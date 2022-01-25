@@ -9,18 +9,31 @@
 <body>
     <style type='text/css'>
         .embeddedServiceHelpButton .helpButton .uiButton {
-            background-color: #7BC142;
+            
             font-family: "Arial", sans-serif;
+            background-image: url("https://aivo-assets.s3.amazonaws.com/images/applications/585d94b15a487f955c992132e02e7ae4/163527866561785f49060ba.png");
+            position: fixed;
+            left: auto;
+            bottom: 0;
+            right: 12px;
+            margin: 0px;    
+            height: 170px;
+            width: 170px;
+            max-height: 100%;   
+            background-color: transparent;
+            pointer-events: all;
+            overflow: hidden;  
+            border: none; 
         }
         .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            outline: 1px solid #7BC142;
+            
         }
     </style>
     
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript'>
         var initESW = function(gslbBaseURL) {
-            embedded_svc.settings.displayHelpButton = false; //Or false
+            embedded_svc.settings.displayHelpButton = true; //Or false
             embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
     
             //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
