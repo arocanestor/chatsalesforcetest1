@@ -1,93 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <style type='text/css'>
-        .embeddedServiceHelpButton .helpButton .uiButton img{           
-               
-            height: 170px;
-           
-        }
-        .embeddedServiceHelpButton .helpButton .uiButton {
-            
-            font-family: "Arial", sans-serif;
-            background-image: url("https://aivo-assets.s3.amazonaws.com/images/applications/585d94b15a487f955c992132e02e7ae4/163527866561785f49060ba.png");
-            position: fixed;
-            left: auto;
-            bottom: 0;
-            right: 12px;
-            margin: 0px;    
-            height: 170px;
-            width: 170px;
-            max-height: 100%;   
-            background-color: transparent;
-            pointer-events: all;
-            overflow: hidden;  
-            border: none; 
-        }
-        .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            
-        }
+  </head>
+  <body>
+    <style type="text/css">
+      .embeddedServiceHelpButton .helpButton .uiButton {
+        font-family: "Arial", sans-serif;
+        background-image: url("https://aivo-assets.s3.amazonaws.com/images/applications/585d94b15a487f955c992132e02e7ae4/163527866561785f49060ba.png");
+        position: fixed;
+        left: auto;
+        bottom: 0;
+        right: 12px;
+        margin: 0px;
+        height: 170px;
+        width: 170px;
+        max-height: 100%;
+        background-color: transparent;
+        pointer-events: all;
+        overflow: hidden;
+        border: none;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+
+      }
+      .message{
+          display: none;
+      }
+      .embeddedServiceIcon{
+          display: none;
+      }
+      .embeddedServiceHelpButton .helpButton .uiButton:focus {
+
+      }
     </style>
-    
-    <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-    <script type='text/javascript'>
-        var initESW = function(gslbBaseURL) {
-            embedded_svc.settings.displayHelpButton = true; //Or false
-            embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-    
-            //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-            //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-    
-            //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-            //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-    
-            // Settings for Chat
-            //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-                // Returns a valid button ID.
-            //};
-            //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-            //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-            //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-            
-            
-            embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-            embedded_svc.settings.entryFeature = 'LiveAgent';
-    
-            embedded_svc.init(
-                'https://nectia72-dev-ed.my.salesforce.com',
-                'https://nectia72-dev-e-developer-edition.na162.force.com/demonectia',
-                gslbBaseURL,
-                '00D5e000003QvzJ',
-                'BOT',
-                {
-                    baseLiveAgentContentURL: 'https://c.la4-c1-ia4.salesforceliveagent.com/content',
-                    deploymentId: '5725e000000UaHd',
-                    buttonId: '5735e000000I0hz',
-                    baseLiveAgentURL: 'https://d.la4-c1-ia4.salesforceliveagent.com/chat',
-                    eswLiveAgentDevName: 'BOT',
-                    isOfflineSupportEnabled: true
-                }
-            );
+
+    <script
+      type="text/javascript"
+      src="https://service.force.com/embeddedservice/5.0/esw.min.js"
+    ></script>
+    <script type="text/javascript">
+      var initESW = function (gslbBaseURL) {
+        embedded_svc.settings.displayHelpButton = true; //Or false
+        embedded_svc.settings.language = ""; //For example, enter 'en' or 'en-US'
+
+        //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+        //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+        //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+        //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+        // Settings for Chat
+        //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+        // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+        // Returns a valid button ID.
+        //};
+        //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+        //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+        //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+        embedded_svc.settings.enabledFeatures = ["LiveAgent"];
+        embedded_svc.settings.entryFeature = "LiveAgent";
+
+        embedded_svc.init(
+          "https://nectia72-dev-ed.my.salesforce.com",
+          "https://nectia72-dev-e-developer-edition.na162.force.com/demonectia",
+          gslbBaseURL,
+          "00D5e000003QvzJ",
+          "BOT",
+          {
+            baseLiveAgentContentURL:
+              "https://c.la4-c1-ia4.salesforceliveagent.com/content",
+            deploymentId: "5725e000000UaHd",
+            buttonId: "5735e000000I0hz",
+            baseLiveAgentURL:
+              "https://d.la4-c1-ia4.salesforceliveagent.com/chat",
+            eswLiveAgentDevName: "BOT",
+            isOfflineSupportEnabled: true,
+          }
+        );
+      };
+
+      if (!window.embedded_svc) {
+        var s = document.createElement("script");
+        s.setAttribute(
+          "src",
+          "https://nectia72-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js"
+        );
+        s.onload = function () {
+          initESW(null);
         };
-    
-        if (!window.embedded_svc) {
-            var s = document.createElement('script');
-            s.setAttribute('src', 'https://nectia72-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-            s.onload = function() {
-                initESW(null);
-            };
-            document.body.appendChild(s);
-        } else {
-            initESW('https://service.force.com');
-        }
+        document.body.appendChild(s);
+      } else {
+        initESW("https://service.force.com");
+      }
     </script>
-  
-</body>
+  </body>
 </html>
