@@ -11,8 +11,7 @@
       type="text/javascript"
     ></script>
   </head>
-  <body>
-    
+  <body>    
     <iframe
     id="pardot"
     data-src="https://go.unbosque.edu.co/l/946263/2022-01-27/2qtv4p"
@@ -30,9 +29,7 @@
         .getAttribute("data-src");
       document
         .querySelector("#pardot")
-        .setAttribute("src", pardotURI + "?" + "utm_medium=social&utm_content=direct-ongoing&utm_campaign=blog");
-      console.log(window.location.search);
-      console.log(pardotURI);
+        .setAttribute("src", pardotURI + "?" + window.location.search.slice(1));      
     </script>
   </body>
 </html>
