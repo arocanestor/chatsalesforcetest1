@@ -10,7 +10,7 @@
     <style type="text/css">
       .embeddedServiceHelpButton .helpButton .uiButton {
         font-family: "Arial", sans-serif;
-        background-image: url("https://aivo-assets.s3.amazonaws.com/images/applications/585d94b15a487f955c992132e02e7ae4/163527866561785f49060ba.png");
+        background-image: url("https://resourceful-fox-fcqbf5-dev-ed--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Png&versionId=0688c000007uHw2&operationContext=DELIVERY&contentId=05T8c00000Zq3GX&page=0&d=/a/8c0000000Jd4/2PC3vhqm4CZcC6U_4qJ2viebpfJc1EIgB9aMaHQid6c&oid=00D8c0000087FoZ&dpt=null&viewId=");
         position: fixed;
         left: auto;
         bottom: 0;
@@ -68,36 +68,31 @@
         embedded_svc.settings.entryFeature = "LiveAgent";
 
         embedded_svc.init(
-          "https://nectia72-dev-ed.my.salesforce.com",
-          "https://nectia72-dev-e-developer-edition.na162.force.com/demonectia",
+          'https://resourceful-fox-fcqbf5-dev-ed.my.salesforce.com',
+          'https://ejemplocomunidad-developer-edition.na213.force.com/ursamajor',
           gslbBaseURL,
-          "00D5e000003QvzJ",
-          "Cola_Chat",
+          '00D8c0000087FoZ',
+          'Teresa',
           {
-            baseLiveAgentContentURL:
-              "https://c.la4-c1-ia4.salesforceliveagent.com/content",
-            deploymentId: "5725e000000UaHd",
-            buttonId: "5735e000000Uarc",
-            baseLiveAgentURL:
-              "https://d.la4-c1-ia4.salesforceliveagent.com/chat",
-            eswLiveAgentDevName: "Cola_Chat",
-            isOfflineSupportEnabled: false,
+            baseLiveAgentContentURL: 'https://c.la5-c2-ia5.salesforceliveagent.com/content',
+            deploymentId: '5728c000000UGgX',
+            buttonId: '5738c000000UHEc',
+            baseLiveAgentURL: 'https://d.la5-c2-ia5.salesforceliveagent.com/chat',
+            eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I8c0000008bkuEAA_1804380e3be',
+            isOfflineSupportEnabled: false
           }
         );
       };
-
+    
       if (!window.embedded_svc) {
-        var s = document.createElement("script");
-        s.setAttribute(
-          "src",
-          "https://nectia72-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js"
-        );
-        s.onload = function () {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://resourceful-fox-fcqbf5-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
           initESW(null);
         };
         document.body.appendChild(s);
       } else {
-        initESW("https://service.force.com");
+        initESW('https://service.force.com');
       }
     </script>    
   </body>
