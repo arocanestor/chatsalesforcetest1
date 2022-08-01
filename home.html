@@ -1044,6 +1044,12 @@
         document.getElementById("00N3C000006CwdE").value =
           JSON.stringify(dataForm);
         contadorbotones();
+
+        if(dataForm.TDOC == 'PA'){
+            document.getElementById('NumeroDocumento').type = 'text';
+        }else{
+            document.getElementById('NumeroDocumento').type = 'number';
+        }
       }
       function onliacheck(even) {
         getField(even);
