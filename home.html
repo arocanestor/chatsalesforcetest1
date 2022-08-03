@@ -241,6 +241,7 @@
               onchange="getField(this)"
               maxlength="80"
             >
+            
               <option value=""disabled selected hidden></option>
               <option value="Femenino">Femenino</option>
               <option value="Masculino">Masculino</option>
@@ -257,29 +258,41 @@
               >6.¿CON CUÁL DE LAS SIGUIENTES ACTIVIDADES UNICOSTA TUVISTE ALGUNA
               INTERACCIÓN?</label
             >
-            <select
-              name="Actividades_Unicosta"
-              id="Actividades_Unicosta"
-              onchange="getField(this)"
-              maxlength="80"
-            >
-              <option value=""disabled selected hidden></option>
-              <option value="CURSE_PRE">CURSÉ UN PREUNIVERSITARIO</option>
-              <option value="VISITE_LA_U">
-                VISITÉ LA U Y VIVÍ UNA EXPERIENCIA
-              </option>
-              <option value="VISITA_COLEGIO">LA U VISITÓ MI COLEGIO</option>
-              <option value="RECOMENDACION_DE_AMIGO_O_FAMILIAR">
-                UN AMIGO O FAMILIAR ME RECOMENDÓ LA U
-              </option>
-              <option value="VI_REDES">VI LA U EN REDES SOCIALES</option>
-              <option value="NAVEGACION_PAGINA_WEB">
-                NAVEGACION PAGINA WEB / REDES SOCIALES
-              </option>
-              <option value="FERIAS_UNIVERSITARIAS">
-                CONOCÍ LA U EN UNA FERIA
-              </option>
-            </select>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />CURSÉ UN PREUNIVERSITARIO<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />VISITÉ LA U Y VIVÍ UNA EXPERIENCIA<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />LA U VISITÓ MI COLEGIO<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />UN AMIGO O FAMILIAR ME RECOMENDÓ LA U<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />NAVEGACION PAGINA WEB / REDES SOCIALES<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />CONOCÍ LA U EN UNA FERIA<br/>
+            <input
+              class="leycheck"              
+              type="checkbox"                            
+              value="true"
+            />CURSÉ UN PREUNIVERSITARIO <br/>            
           </div>
           <div class="input">
             <label for="ELIGIERA_UNICOSTA"
@@ -365,6 +378,17 @@
               <option value="Otras">Otras</option>
             </select>
           </div>
+          <div class="input DEPARTAMENTO">
+            <input
+              onchange="getField(this)"
+              id="DEPARTAMENTOF"
+              maxlength="80"
+              name="DEPARTAMENTO"
+              type="text"
+              hidden
+            />
+          </div>
+
           <div class="input">
             <label for="CIUDAD"
               >11.ESCRIBA EL MUNICIPIO O CIUDAD DONDE USTED NACIÓ</label
@@ -397,6 +421,16 @@
               <option value="Sucre">Sucre</option>
               <option value="Otras">Otras</option>
             </select>
+          </div>
+          <div class="input ">
+            <input
+              onchange="getField(this)"
+              id="COLEGIO_GF"
+              maxlength="80"
+              name="COLEGIO_G"
+              type="text"
+              hidden
+            />
           </div>
           <div class="input">
             <label for="MUNICIPIO_CIUDAD"
@@ -645,7 +679,7 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Padre">Padre</option>
+              <option value="Padre">Padre/madre</option>
               <option value="hermano">Hermano</option>
               <option value="primo">Primo</option>
               <option value="tio">Tio</option>
@@ -1017,7 +1051,7 @@
       </form>
     </div>
     <script>
-      let dataForm = {};
+      let dataForm = {"dsad":"dsda"};
 
       let pages = [
         document.getElementById("sec1"),
@@ -1044,13 +1078,41 @@
         document.getElementById("00N3C000006CwdE").value =
           JSON.stringify(dataForm);
         contadorbotones();
-
+          //Verirficacion de tipo de documento Pa es igual a Pasaporte
         if(dataForm.TDOC == 'PA'){
             document.getElementById('NumeroDocumento').type = 'text';
         }else{
             document.getElementById('NumeroDocumento').type = 'number';
         }
+        habilitarCamposTipoOtro(even.name);     
+        console.log(dataForm);
       }
+      function habilitarCamposTipoOtro(eve){
+        let dep = ["Atlantico","Bolivar","Magdalena","La_Guajira","Cesar","Cordoba","Sucre","Otras"];
+        let evef = eve+"F";
+        if(eve == "DEPARTAMENTO" || eve ==  "COLEGIO_G"){
+          if(dataForm[eve] == 'Otras'){
+            document.getElementById(evef).hidden = false;
+          } else{
+            let exite = false;
+            dep.map((e)=>{
+              if(e == dataForm[eve]){
+                exite = true;
+              }
+            })
+            if(exite == true){
+              document.getElementById(evef).hidden = true;
+            }else{
+              document.getElementById(evef).hidden = false;
+            }
+           
+          }
+
+        }
+        
+      }
+      
+
       function onliacheck(even) {
         getField(even);
         [...checks].forEach((check) => {
