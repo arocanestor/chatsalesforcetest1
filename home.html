@@ -13,6 +13,10 @@
         background-position: center;
         background-size: cover;
         font-family: "Segoe UI,Segoe WP,Tahoma,Arial,sans-serif";
+        text-transform: uppercase;
+      }
+      option{
+        text-transform: uppercase;
       }
       div {
         font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans,
@@ -71,7 +75,14 @@
         -webkit-transition: 0.5s;
         transition: 0.5s;
         outline: none;
-        justify-content: l;
+        justify-content: left;
+      }
+      .contetn-text{
+        padding: 4px 15px;
+        width: 80%;
+      }
+      .help-text {
+        
       }
       .input > input:focus,
       .input > select:focus {
@@ -191,7 +202,7 @@
             <label for="TDOC">3.TIPO DE DOCUMENTO</label>
             <input
               type="radio"
-              onclick="onliacheck(this)"
+              onclick="getField(this)"
               type="checkbox"
               name="TDOC"
               id="TI"
@@ -199,7 +210,7 @@
             />TARJETA DE IDENTIDAD<br />
             <input
               type="radio"
-              onclick="onliacheck(this)"
+              onclick="getField(this)"
               type="checkbox"
               name="TDOC"
               id="CD"
@@ -207,7 +218,7 @@
             />CEDULA<br />
             <input
               type="radio"
-              onclick="onliacheck(this)"
+              onclick="getField(this)"
               type="checkbox"
               name="TDOC"
               id="PA"
@@ -215,7 +226,7 @@
             />PASAPORTE<br />
             <input
               type="radio"
-              onclick="onliacheck(this)"
+              onclick="getField(this)"
               type="checkbox"
               name="TDOC"
               id="CD"
@@ -224,7 +235,7 @@
           </div>
           <div class="input">
             <label for="NumeroDocumento"
-              >4.ESCRIBE TU NÚMERO DE DOCUMENTO, SIN PUNTOS NI COMAS.</label
+              >4.ESCRIBE TU NÚMERO DE DOCUMENTO</label
             ><input
               id="NumeroDocumento"              
               name="NumeroDocumento"                            
@@ -232,6 +243,11 @@
               maxlength = "21"
               onchange="getField(this)"
             />
+            <br>
+            <div class="contetn-text">
+              <span class="help-text">Tenga en cuenta que este campo es utilizado para relacionar este formulario con su entrevista</span>
+            </div>
+            
           </div>
           <div class="input">
             <label for="Genero">5.SELECCIONA TU GENERO</label>
@@ -245,12 +261,12 @@
               <option value=""disabled selected hidden></option>
               <option value="Femenino">Femenino</option>
               <option value="Masculino">Masculino</option>
-              <option value="Transgenero">Transgénero</option>
+              <option value="Transgénero">Transgénero</option>
               <option value="Intersexual">Intersexual</option>
-              <option value="No_binario">No binario</option>
-              <option value="Sin_genero">Sin género</option>
-              <option value="No_estoy_seguro">No estoy seguro</option>
-              <option value="Prefiero_no_decir">Prefiero no decir</option>
+              <option value="No binario">No binario</option>
+              <option value="Sin género">Sin género</option>
+              <option value="No estoy seguro">No estoy seguro</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
             </select>
           </div>
           <div class="input">
@@ -259,39 +275,53 @@
               INTERACCIÓN?</label
             >
             <input
-              class="leycheck"              
-              type="checkbox"                            
-              value="true"
+              class="conformarPM"              
+              type="checkbox"
+              name="Cursé un preuniversitario"                            
+              value="Cursé un preuniversitario"
+              onclick="conformarPM(this)"
             />CURSÉ UN PREUNIVERSITARIO<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="Visité la u y viví una experiencia"
+              name="Visité la u y viví una experiencia"
+              onclick="conformarPM(this)"
             />VISITÉ LA U Y VIVÍ UNA EXPERIENCIA<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="La u visitó mi colegio"
+              name="La u visitó mi colegio"
+              onclick="conformarPM(this)"
             />LA U VISITÓ MI COLEGIO<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="Un amigo o familiar me recomendó la u"
+              name="Un amigo o familiar me recomendó la u"
+              onclick="conformarPM(this)"
             />UN AMIGO O FAMILIAR ME RECOMENDÓ LA U<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="Vi la u en redes sociales"
+              name="Vi la u en redes sociales"
+              onclick="conformarPM(this)"
             />NAVEGACION PAGINA WEB / REDES SOCIALES<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="Navegacion pagina web / redes sociales"
+              name="Navegacion pagina web / redes sociales"
+              onclick="conformarPM(this)"
             />CONOCÍ LA U EN UNA FERIA<br/>
             <input
-              class="leycheck"              
+              class="conformarPM"              
               type="checkbox"                            
-              value="true"
+              value="Conocí la u en una feria"
+              name="Conocí la u en una feria"
+              onclick="conformarPM(this)"
             />CURSÉ UN PREUNIVERSITARIO <br/>            
           </div>
           <div class="input">
@@ -307,19 +337,19 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="CURSE_PRE">CURSÉ UN PREUNIVERSITARIO</option>
-              <option value="VISITE_LA_U">
+              <option value="Cursé un preuniversitario">CURSÉ UN PREUNIVERSITARIO</option>
+              <option value="Visité la u y viví una experiencia">
                 VISITÉ LA U Y VIVÍ UNA EXPERIENCIA
               </option>
-              <option value="VISITA_COLEGIO">LA U VISITÓ MI COLEGIO</option>
-              <option value="RECOMENDACION_DE_AMIGO_O_FAMILIAR">
+              <option value="La u visitó mi colegio">LA U VISITÓ MI COLEGIO</option>
+              <option value="Un amigo o familiar me recomendó la u">
                 UN AMIGO O FAMILIAR ME RECOMENDÓ LA U
               </option>
-              <option value="VI_REDES">VI LA U EN REDES SOCIALES</option>
-              <option value="NAVEGACION_PAGINA_WEB">
+              <option value="Vi la u en redes sociales">VI LA U EN REDES SOCIALES</option>
+              <option value="Navegacion pagina web / redes sociales">
                 NAVEGACION PAGINA WEB / REDES SOCIALES
               </option>
-              <option value="FERIAS_UNIVERSITARIAS">
+              <option value="Conocí la u en una feria">
                 CONOCÍ LA U EN UNA FERIA
               </option>
             </select>
@@ -353,8 +383,8 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Publico">Público</option>
-              <option value="Privado">Privado</option>
+              <option value="Público">PÚBLICO</option>
+              <option value="Privado">PRIVADO</option>
             </select>
           </div>
           <div class="input">
@@ -368,14 +398,14 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Atlantico">Atlántico</option>
-              <option value="Bolivar">Bolivar</option>
-              <option value="Magdalena">Magdalena</option>
-              <option value="La_Guajira">La Guajira</option>
-              <option value="Cesar">Cesar</option>
-              <option value="Cordoba">Córdoba</option>
-              <option value="Sucre">Sucre</option>
-              <option value="Otras">Otras</option>
+              <option value="Atlantico">ATLÁNTICO</option>
+              <option value="Bolivar">BOLIVAR</option>
+              <option value="Magdalena">MAGDALENA</option>
+              <option value="La Guajira">LA GUAJIRA</option>
+              <option value="Cesar">CESAR</option>
+              <option value="Cordoba">CÓRDOBA</option>
+              <option value="Sucre">SUCRE</option>
+              <option value="Otras">OTROS</option>
             </select>
           </div>
           <div class="input DEPARTAMENTO">
@@ -394,9 +424,9 @@
               >11.ESCRIBA EL MUNICIPIO O CIUDAD DONDE USTED NACIÓ</label
             ><input
               onchange="getField(this)"
-              id="CIUDAD"
+              id="MUNICIPIO_NACIO"
               maxlength="80"
-              name="email"
+              name="MUNICIPIO_NACIO"
               type="text"
             />
           </div>
@@ -412,14 +442,14 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Atlantico">Atlántico</option>
-              <option value="Bolivar">Bolivar</option>
-              <option value="Magdalena">Magdalena</option>
-              <option value="La_Guajira">La Guajira</option>
-              <option value="Cesar">Cesar</option>
-              <option value="Cordoba">Córdoba</option>
-              <option value="Sucre">Sucre</option>
-              <option value="Otras">Otras</option>
+              <option value="Atlantico">ATLÁNTICO</option>
+              <option value="Bolivar">BOLIVAR</option>
+              <option value="Magdalena">MAGDALENA</option>
+              <option value="La Guajira">LA GUAJIRA</option>
+              <option value="Cesar">CESAR</option>
+              <option value="Cordoba">CÓRDOBA</option>
+              <option value="Sucre">SUCRE</option>
+              <option value="Otras">OTROS</option>
             </select>
           </div>
           <div class="input ">
@@ -439,11 +469,18 @@
             ><input
               id="MUNICIPIO_CIUDAD"
               maxlength="40"
-              name="phone"
+              name="MUNICIPIO_CIUDAD"
               size="20"
               type="text"
               onchange="getField(this)"
             />
+          </div>
+          <div class="input" id="NextInfo">            
+            <div class="contetn-text">
+              <br><br>
+              <span class="help-text">Por favor diligencie todos los campos para continuar</span>
+            </div>
+            
           </div>
         </section>
         <section class="sectionForm sec2" id="sec2" hidden>
@@ -484,11 +521,11 @@
               maxlength="80"
             >
               <option value="" disabled selected hidden></option>
-              <option value="0-1">Entre 0-1</option>
-              <option value="1-2">Entre 1-2</option>
-              <option value="2-5">Entre 2-5</option>
-              <option value="5-10">Entre 5-10</option>
-              <option value="10">Mas de 10</option>
+              <option value="Entre 0 - 1">ENTRE 0-1</option>
+              <option value="Entre 1 - 2">ENTRE 1-2</option>
+              <option value="Entre 2 - 5">ENTRE 2-5</option>
+              <option value="Entre 5 - 10">ENTRE 5-10</option>
+              <option value="Más de 10">MÁS DE 10</option>
             </select>
           </div>
           <div class="input">
@@ -502,7 +539,7 @@
               onchange="getField(this)"
             />
           </div>
-          <div class="input">
+          <div class="input NUMERO_HERMANOSDependiente">
             <label for="POSICION">18.POSICIÓN ENTRE HERMANOS</label
             ><input
               id="POSICION"
@@ -512,7 +549,7 @@
               onchange="getField(this)"
             />
           </div>
-          <div class="input">
+          <div class="input NUMERO_HERMANOSDependiente">
             <label for="HERMANOS_ESTUDIOS"
               >19.NÚMERO DE HERMANOS CON ESTUDIOS SUPERIORES (
               UNIVERSIDAD):</label
@@ -526,7 +563,7 @@
               onchange="getField(this)"
             />
           </div>          
-          <div class="input">
+          <div class="input ">
             <label for="MADRE_SOLTERA"
               >20.¿ES USTED PADRE SOLTERO O MADRE SOLTERA?</label
             ><select
@@ -536,8 +573,8 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="si">Si</option>
-              <option value="no">No</option>
+              <option value="Sí">SI</option>
+              <option value="No">No</option>
             </select>
           </div>
           <div class="input">
@@ -547,7 +584,7 @@
               name="VIVIENDA"
               id="VIVIENDA_SI"
               onchange="getField(this)"
-              value="Si"
+              value="Sí"
             />Si<br />
             <input
               type="radio"
@@ -588,13 +625,13 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Primaria">Primaria</option>
-              <option value="Secundaria">Secundaria</option>
-              <option value="Tecnico-tecnologo">Técnico-tecnólogo</option>
-              <option value="Profesional universitario">
-                Profesional universitario
+              <option value="Primaria">PRIMARIO</option>
+              <option value="Secundaria">SECUNDARIA</option>
+              <option value="Técnico-tecnólogo">TÉCNICO - TECNOLOGO</option>
+              <option value="Profesional Universitario">
+                PROFESIONAL UNIVERSITARIO
               </option>
-              <option value="Posgrado">Posgrado</option>
+              <option value="Posgrado">POSGRADO</option>
             </select>
           </div>
           <div class="input">
@@ -606,12 +643,12 @@
               onchange="getField(this)"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Estudia">Estudia</option>
-              <option value="Labora">Labora</option>
-              <option value="Ama de casa">Ama de casa</option>
-              <option value="Pensionado">Pensionado</option>
-              <option value="Desempleado">Desempleado</option>
-              <option value="Independiente">Independiente</option>
+              <option value="Estudia">ESTUDIA</option>
+              <option value="Labora">LABORA</option>
+              <option value="Ama de casa">AMA DE CASA</option>
+              <option value="Pensionado">PENSIONADO</option>
+              <option value="Desempleado">DESEMPLEADO</option>
+              <option value="Independiente">INDEPENDIENTE</option>
             </select>
           </div>
           <div class="input">
@@ -642,14 +679,14 @@
               onchange="getField(this)"
               maxlength="80"
             >
-              <option value=""disabled selected hidden></option>
-              <option value="Primaria">Primaria</option>
-              <option value="Secundaria">Secundaria</option>
-              <option value="Tecnico-tecnologo">Técnico-tecnólogo</option>
-              <option value="Profesional universitario">
-                Profesional universitario
-              </option>
-              <option value="Posgrado">Posgrado</option>
+            <option value=""disabled selected hidden></option>
+            <option value="Primaria">PRIMARIO</option>
+            <option value="Secundaria">SECUNDARIA</option>
+            <option value="Técnico-tecnólogo">TÉCNICO - TECNOLOGO</option>
+            <option value="Profesional Universitario">
+              PROFESIONAL UNIVERSITARIO
+            </option>
+            <option value="Posgrado">POSGRADO</option>
             </select>
           </div>
           <div class="input">
@@ -661,12 +698,12 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Estudia">Estudia</option>
-              <option value="Labora">Labora</option>
-              <option value="Ama de casa">Ama de casa</option>
-              <option value="Pensionado">Pensionado</option>
-              <option value="Desempleado">Desempleado</option>
-              <option value="Independiente">Independiente</option>
+              <option value="Estudia">ESTUDIA</option>
+              <option value="Labora">LABORA</option>
+              <option value="Ama de casa">AMA DE CASA</option>
+              <option value="Pensionado">PENSIONADO</option>
+              <option value="Desempleado">DESEMPLEADO</option>
+              <option value="Independiente">INDEPENDIENTE</option>
             </select>
           </div>
           <div class="input">
@@ -679,12 +716,14 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Padre">Padre/madre</option>
-              <option value="hermano">Hermano</option>
-              <option value="primo">Primo</option>
-              <option value="tio">Tio</option>
-              <option value="amigo">Amigo</option>
-              <option value="pareja">Pareja</option>
+              <option value="Padre">PADRE/MADRE</option>
+              <option value="Hermano">HERMANO</option>
+              <option value="Primo">PRIMO</option>
+              <option value="Tio">TIO</option>
+              <option value="Abuelo">ABUELO</option>
+              <option value="Amigo">AMIGO</option>
+              <option value="Pareja	">PAREJA</option>
+              
             </select>
           </div>
         </section>
@@ -697,7 +736,7 @@
             name="BECA"
             id="BECA_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -707,7 +746,7 @@
             value="No"
           />No
           </div>
-          <div class="input">
+          <div class="input BECADependiente">
             <label for="NOMBRE_B_C">32.¿CUÁL BECA O CRÉDITO?</label
             ><input
               id="NOMBRE_B_C"
@@ -723,7 +762,7 @@
             name="COMPUTADOR"
             id="COMPUTADOR_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -759,7 +798,7 @@
             name="ACCESO_INTERNET"
             id="ACCESO_INTERNET_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -776,7 +815,7 @@
             name="PLAN_DATOS"
             id="PLAN_DATOS_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -794,20 +833,20 @@
             <label for="Eps">37.¿Posee EPS?</label
             ><input
             type="radio"
-            name="Eps"
+            name="Eps_si"
             id="Eps_SI"
             onchange="getField(this)"
             value="Si"
           />Si<br />
           <input
             type="radio"
-            name="Eps"
+            name="Eps_si"
             id="Eps_No"
             onchange="getField(this)"
             value="No"
           />No
           </div>
-          <div class="input">
+          <div class="input Eps_siDependiente">
             <label for="Eps">38.¿CUÁL ES SU EPS?</label
             ><select
               name="Eps"
@@ -842,26 +881,36 @@
               <option value="Servicio Occidental de salud">
                 Servicio Occidental de salud
               </option>
-              <option value="Cruz Blanca Eps">Cruz Blanca Eps</option>
-              <option value="Ninguna">Ninguna</option>
+              <option value="Cruz Blanca Eps">Cruz Blanca Eps</option>              
               <option value="Aliansalud">Aliansalud</option>
               <option value="Mutual ser">Mutual ser</option>
+              <option value="Ninguna">Ninguna</option>
               <option value="Otras">Otras</option>
             </select>
+          </div>
+          <div class="input Eps_siDependiente">
+            <input
+              onchange="getField(this)"
+              id="EpsF"
+              maxlength="80"
+              name="Eps"
+              type="text"
+              hidden
+            />
           </div>
           <div class="input">
             <label for="EMBARAZO"
               >39.¿ESTÁ USTED EN CONDICIÓN DE EMBARAZO?</label
             ><input
             type="radio"
-            name="EMBARAZO"
+            name="EMBARAZO_SI"
             id="EMBARAZO_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
-            name="EMBARAZO"
+            name="EMBARAZO_SI"
             id="EMBARAZO_No"
             onchange="getField(this)"
             value="No"
@@ -874,7 +923,7 @@
             name="LENTES_RECETADOS"
             id="LENTES_RECETADOS_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -884,7 +933,7 @@
             value="No"
           />No
           </div>
-          <div class="input">
+          <div class="input LENTES_RECETADOSDependiente">
             <label for="USO_LENTES">41.¿MOTIVO DEL USO DE LENTES?</label
             ><input
               id="USO_LENTES"
@@ -892,28 +941,29 @@
               name="USO_LENTES"
               size="20"
               type="text"
+              onchange="getField(this)"
             />
           </div>
           <div class="input">
-            <label for="DIAGNOSTICO_MEDICO"
+            <label for="DIAGNOSTICO_MEDICO_ESPECIAL"
               >42.¿USTED TIENE ALGÚN DIAGNOSTICO MÉDICO DE ENFERMAD QUE REQUIERA
               CUIDADO ESPECIAL?</label
             ><input
             type="radio"
-            name="DIAGNOSTICO_MEDICO"
-            id="DIAGNOSTICO_MEDICO_SI"
+            name="DIAGNOSTICO_MEDICO_ESPECIAL"
+            id="DIAGNOSTICO_MEDICO_ESPECIAL_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
-            name="DIAGNOSTICO_MEDICO"
-            id="DIAGNOSTICO_MEDICO_No"
+            name="DIAGNOSTICO_MEDICO_ESPECIAL"
+            id="DIAGNOSTICO_MEDICO_ESPECIAL_NO"
             onchange="getField(this)"
             value="No"
           />No
           </div>
-          <div class="input">
+          <div class="input DIAGNOSTICO_MEDICO_ESPECIALDependiente">
             <label for="DIAGNOSTICO">43.¿CUÁL DIAGNOSTICO MÉDICO? </label
             ><input
               id="DIAGNOSTICO"
@@ -934,7 +984,7 @@
             name="TRABAJA"
             id="TRABAJA_SI"
             onchange="getField(this)"
-            value="Si"
+            value="Sí"
           />Si<br />
           <input
             type="radio"
@@ -944,7 +994,7 @@
             value="No"
           />No
           </div>
-          <div class="input">
+          <div class="input TRABAJADependiente">
             <label for="NOMBRE_EMPRESA"
               >45.NOMBRE DE LA EMPRESA DONDE TRABAJA:</label
             ><input
@@ -954,7 +1004,7 @@
               onchange="getField(this)"
             />
           </div>
-          <div class="input">
+          <div class="input TRABAJADependiente">
             <label for="CARGO_ACTUAL">46.CARGO ACTUAL:</label>
             <input
               id="CARGO_ACTUAL"
@@ -963,7 +1013,7 @@
               onchange="getField(this)"
             />
           </div>
-          <div class="input">
+          <div class="input TRABAJADependiente">
             <label for="DIRECCIÓN_EMPRESA"
               >47.DIRECCIÓN DE LA EMPRESA DONDE TRABAJA:</label
             ><input
@@ -973,8 +1023,8 @@
               onchange="getField(this)"
             />
           </div>
-          <div class="input">
-            <label for="TELEFONO_EMPRESA"
+          <div class="input TRABAJADependiente">
+            <label for="TELEFONO_EMPRESA "
               >48.TELEFONO DE LA EMPRESA DONDE TRABAJA:</label
             ><input
               id="TELEFONO_EMPRESA"
@@ -982,6 +1032,7 @@
               name="TELEFONO_EMPRESA"
               size="20"
               type="text"
+              onchange="getField(this)"
             />
           </div>
           <div class="input">
@@ -1000,14 +1051,29 @@
 
             <input
               class="leycheck"
-              onclick="getField(this)"
+              onclick="checkLey(this)"
               type="checkbox"
               name="ley"
-              id="ley"
-              value="true"
+              id="ley"  
+              value=false
+
             />
-              Si
-            
+              Si            
+          </div>
+          <div class="input">
+            <label for="ley">
+              Por favor confirme el su correo electronico</label
+            >
+
+            <input
+              class="input"
+              onchange="varificarEmail(this)"
+              type="text"
+              name="email"
+              id="email"                
+
+            />
+                      
           </div>
         </section>
 
@@ -1051,7 +1117,9 @@
       </form>
     </div>
     <script>
-      let dataForm = {"dsad":"dsda"};
+     let dataForm = {"ley":"No","email":""};    
+
+      let multiS ={};
 
       let pages = [
         document.getElementById("sec1"),
@@ -1067,30 +1135,35 @@
       let checks = document.querySelectorAll(".checkDocument");
 
       let inp = document.querySelectorAll("input[type='number']");
-      [...inp].forEach((i) => {
-        i.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");  
-      });
+        [...inp].forEach((i) => {
+          i.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");  
+        });
 
-
-      function getField(even) {
+      /// Agregar valor de los campos en el mapa dataForm
+      function getField(even) {        
         dataForm[even.name] = even.value;
         document.getElementById("00N3C000006Cwcz").click();
-        document.getElementById("00N3C000006CwdE").value =
-          JSON.stringify(dataForm);
+        document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
         contadorbotones();
+        /// Habilita el campo de documento para recibir letras cuando es seleccionado documento
           //Verirficacion de tipo de documento Pa es igual a Pasaporte
         if(dataForm.TDOC == 'PA'){
             document.getElementById('NumeroDocumento').type = 'text';
         }else{
             document.getElementById('NumeroDocumento').type = 'number';
         }
-        habilitarCamposTipoOtro(even.name);     
-        console.log(dataForm);
+        habilitarCamposTipoOtro(even.name);
+        if(even.name == 'BECA'||even.name == 'Eps_si'||even.name == 'LENTES_RECETADOS'||even.name == 'DIAGNOSTICO_MEDICO_ESPECIAL'||even.name == 'TRABAJA' ||even.name == 'NUMERO_HERMANOS'){
+          camposDependientes(even);
+        }
+
       }
+      ///Habilita un nuevo campo si es elegida la opcion otros en el campo 10/12/37
       function habilitarCamposTipoOtro(eve){
-        let dep = ["Atlantico","Bolivar","Magdalena","La_Guajira","Cesar","Cordoba","Sucre","Otras"];
+        let dep = ["Atlantico","Bolivar","Magdalena","La Guajira","Cesar","Cordoba","Sucre","Otras","Cajacopi Eps","Sanitas Eps","Compensar Eps","Coomeva Eps","Coosalud","Sura Eps","Famisanar","Medimas Eps","Nueva Eps","Salud Total Eps","Cafam Eps","Emssanar Eps","Colsubsidio Eps","Asmet salud Eps","Asocación mutual barrios","Capresoca Eps","Ecoopsos Eps SAS","Fuerzas militares","Policia Naciona","Ecopetrol","Magisterio","Servicio Occidental de salud","Cruz Blanca Eps","Ninguna","Aliansalud","Mutual ser"];
+        
         let evef = eve+"F";
-        if(eve == "DEPARTAMENTO" || eve ==  "COLEGIO_G"){
+        if(eve == "DEPARTAMENTO" || eve ==  "COLEGIO_G" ||eve ==  "Eps"){
           if(dataForm[eve] == 'Otras'){
             document.getElementById(evef).hidden = false;
           } else{
@@ -1111,16 +1184,32 @@
         }
         
       }
-      
+      //Habilitar campos dependientes
+      function camposDependientes(eve){
+        let camposD = eve.name + 'Dependiente'
+        let elementos = document.querySelectorAll(`.${camposD}`);
+        //Valida si el campo tiene un numero superior a 0(Pregunta 16)
+        if(eve.name == 'NUMERO_HERMANOS'){
+          [...elementos].forEach((i,v)=>{
+            if(eve.value =='0' ){
+              i.hidden = true;
+            }else{
+              i.hidden = false;
+            }
+          });
+        } else{
+          ///// Es una pregunta de tipo si o no 
+          [...elementos].forEach((i,v)=>{
+            if(eve.value =='No' ){
+              i.hidden = true;
+            }else{
+              i.hidden = false;
+            }
+          });
+        }
 
-      function onliacheck(even) {
-        getField(even);
-        [...checks].forEach((check) => {
-          if (even.id != check.id) {
-            check.checked = false;
-          }
-        });
       }
+      //Cuanenta el número de campos del mapa tenendo 
       function contadorbotones() {
         var contadorCampos = 0;
 
@@ -1132,29 +1221,33 @@
         field = contadorCampos;
         habilitarBotones();
       }
+      //La activacion de botones depende de el numero de campos diligenciados
       function habilitarBotones() {
-        var submit = document.getElementById("submit");
-        if (field == 48) {
+        let submit = document.getElementById("submit");
+        if (field > 35 && page == 4 &&  dataForm.email != '' ) {
           submit.hidden = false;
         } else {
           submit.hidden = true;
         }
 
-        var back = document.getElementById("back");
+        let back = document.getElementById("back");
         if (page == 0) {
           back.hidden = true;
         } else {
           back.hidden = false;
         }
-        var next = document.getElementById("next");
-        if (page == 4 || field <= 12) {
+        let next = document.getElementById("next");
+        let info = document.getElementById("NextInfo");
+        if (page == 4 || field <= 13) {
           next.hidden = true;
+          info.hidden = false;
         } else {
           next.hidden = false;
+          info.hidden = true;
         }
         
       }
-
+      //Paginado 
       function paginado(eve) {
         if (eve.value == "next") {
           page += 1;
@@ -1170,6 +1263,40 @@
           }
         });
         habilitarBotones();
+      }
+      //Confoma los valores para la pocklis(Multiselec) de la pregunta 6
+      function conformarPM(eve){
+        let confArray='';
+        const mult = document.querySelectorAll(".conformarPM");
+        [...mult].map((i) =>{         
+          if(i.checked == true){            
+            confArray +=i.value + ";";
+          }
+        });
+        dataForm['multiPL'] = confArray.slice(0,-1);        
+      }
+      //Cambia el valor de la pregunta 49 
+      function checkLey(eve){
+        
+        if(dataForm[eve.name] === 'No'){
+          dataForm[eve.name] = 'Sí';
+        } else{
+          dataForm[eve.name] = 'No';
+        }
+        console.log(dataForm[eve.name]);
+      }
+      //Verificar email
+      function varificarEmail(eve){
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(eve.value))
+        {
+          dataForm[eve.name] = eve.value;
+        }else{
+          alert("Por favor ingrese un direccion de correo electrono (email)!")
+          eve.value = '';
+          dataForm.email = '';
+         
+        }
+        habilitarBotones();  
       }
     </script>
   </body>
