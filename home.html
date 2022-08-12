@@ -1110,7 +1110,7 @@
           >
             Atras
           </button>
-          <input type="submit" onclick="varificarEmail(this)"  name="submit" id="submit" hidden />
+          <input type="submit"   name="submit" id="submit" hidden />
         </div>
       </form>
     </div>
@@ -1119,6 +1119,7 @@
     let dataForm = {
       "ley": "Sí",        
       "name": "Damian",
+      "email":"fdafsafas",
       "LastName": "Camino",
       "TDOC": "CD",
       "emailForm": "",
@@ -1333,36 +1334,40 @@
       //Verificar email
       function varificarEmail(even){
        
-        let eve = document.getElementById("emailForm");
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(eve.value))
+        
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(even.value))
         {
-          dataForm[eve.name] = eve.value;
-          onFocusF(even);
-        }else{
-          alert("Por favor ingrese un direccion de correo electrono (email)!")
-          eve.value = '';          
-          even.preventDefault();
+          dataForm[even.name] = even.value;   
+          habilitarBotones();
+          onFocusF();
+          document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
+          return       
         }
-        console.log(dataForm)
-        habilitarBotones();
+          alert("Por favor ingrese una dirección de correo electrono (email)!")
+          even.value = '';                    
+          
+        
       }
       
-      function onFocusF(eve){
-        console.log("onFocus")
+      function onFocusF(){
+        dataForm.email = dataForm.emailForm;
+        document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
         let submit = document.getElementById("submit");
         submit.hidden = false;
         document.getElementById("submit").addEventListener("click", (event) => {
-          console.log(dataForm)
-          if(dataForm.email == ""){
-            console.log(dataForm);
-            event.preventDefault();            
-          }          
-          varificarEmail(eve)
-          alert("Gracias por diligenciar el formulario");
+          
+          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email)){                        
+            alert("Gracias por diligenciar el formulario");
+            
+            return            
+          }                             
+          alert("Por favor ingrese una dirección de correo electrono (email)!")
         }, false);
-
+        
+         
       }
-      function onSubmit(){        
+      function onSubmit(){  
+          
       }
     
 
