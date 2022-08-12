@@ -1033,8 +1033,23 @@
             />
           </div>
           <div class="input">
+            <label for="emailForm">
+              49.Por favor confirme su correo electronico</label
+            >
+
+            <input
+              class="input"
+              onchange="varificarEmail(this)"                           
+              type="text"
+              name="emailForm"
+              id="emailForm"                
+
+            />
+                      
+          </div>
+          <div class="input">
             <label for="ley">
-              49.Declaro y acepto que conozco el reglamento estudiantil de la
+              50.Declaro y acepto que conozco el reglamento estudiantil de la
               universidad de la Costa (ACUERDO No. 1618 30 DE NOVIEMBRE DE 2020,
               ART.37), donde se establece que, si en el proceso de admisión se
               identifica que obtuve en la prueba saber 11 un puntaje por debajo
@@ -1057,22 +1072,7 @@
             />
               Si            
           </div>
-          <div class="input">
-            <label for="email">
-              Por favor confirme su correo electronico</label
-            >
-
-            <input
-              class="input"
-              onchange="varificarEmail(this)"
-              onfocus="onFocusF(this)"              
-              type="text"
-              name="email"
-              id="email"                
-
-            />
-                      
-          </div>
+          
         </section>
 
         <!--form_json:-->
@@ -1110,18 +1110,18 @@
           >
             Atras
           </button>
-          <input type="submit"  onclick="onSubmit()" name="submit" id="submit" hidden />
+          <input type="submit" onclick="varificarEmail(this)"  name="submit" id="submit" hidden />
         </div>
       </form>
     </div>
     <script>
     // let dataForm = {"ley":"No","email":""};     
     let dataForm = {
-      "ley": "Sí",
-      "email": "",
+      "ley": "Sí",        
       "name": "Damian",
       "LastName": "Camino",
       "TDOC": "CD",
+      "emailForm": "",
       "NumeroDocumento": "",
       "Genero": "Masculino",
       "multiPL": "Cursé un preuniversitario;Visité la u y viví una experiencia;La u visitó mi colegio;Vi la u en redes sociales;Navegacion pagina web / redes sociales",
@@ -1181,15 +1181,7 @@
         [...inp].forEach((i) => {
           i.setAttribute("oninput", "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);");  
         });
-        if(page == 4){
-          let emailComf = document.getElementById("email");
-         
-          if(emailComf.document.activeElement){
-           
-      }
 
-
-        }
       
       /// Agregar valor de los campos en el mapa dataForm
       function getField(even) {        
@@ -1277,7 +1269,7 @@
       //La activacion de botones depende de el numero de campos diligenciados
       function habilitarBotones() {
         let submit = document.getElementById("submit");
-        if (field > 35 && page == 4 &&  dataForm.email != '' ) {
+        if (field > 35 && page == 4 &&  dataForm.emailForm != '' ) {
           submit.hidden = false;
         } else {
           submit.hidden = true;
@@ -1335,38 +1327,44 @@
           dataForm[eve.name] = 'Sí';
         } else{
           dataForm[eve.name] = 'No';
-        }        
+        }  
+        console.log(dataForm)      
       }
       //Verificar email
       function varificarEmail(even){
        
-        let eve = document.getElementById("email");
+        let eve = document.getElementById("emailForm");
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(eve.value))
         {
           dataForm[eve.name] = eve.value;
+          onFocusF(even);
         }else{
           alert("Por favor ingrese un direccion de correo electrono (email)!")
-          eve.value = '';
-          dataForm.email = '';
-         
+          eve.value = '';          
+          even.preventDefault();
         }
+        console.log(dataForm)
         habilitarBotones();
       }
+      
       function onFocusF(eve){
+        console.log("onFocus")
         let submit = document.getElementById("submit");
         submit.hidden = false;
         document.getElementById("submit").addEventListener("click", (event) => {
+          console.log(dataForm)
           if(dataForm.email == ""){
-            event.preventDefault();
-            varificarEmail(eve)
+            console.log(dataForm);
+            event.preventDefault();            
           }          
+          varificarEmail(eve)
           alert("Gracias por diligenciar el formulario");
         }, false);
 
       }
-      function onSubmit(){
-        console.log( dataForm)
+      function onSubmit(){        
       }
+    
 
     </script>
   </body>
