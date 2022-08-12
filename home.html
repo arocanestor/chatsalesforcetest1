@@ -1185,7 +1185,7 @@
           let emailComf = document.getElementById("email");
          
           if(emailComf.document.activeElement){
-            console.log("elemento sec");
+           
       }
 
 
@@ -1208,7 +1208,7 @@
         if(even.name == 'BECA'||even.name == 'Eps_si'||even.name == 'LENTES_RECETADOS'||even.name == 'DIAGNOSTICO_MEDICO_ESPECIAL'||even.name == 'TRABAJA' ||even.name == 'NUMERO_HERMANOS'){
           camposDependientes(even);
         }
-        console.log(dataForm);
+        
       }
       ///Habilita un nuevo campo si es elegida la opcion otros en el campo 10/12/37
       function habilitarCamposTipoOtro(eve){
@@ -1335,8 +1335,7 @@
           dataForm[eve.name] = 'Sí';
         } else{
           dataForm[eve.name] = 'No';
-        }
-        console.log(dataForm[eve.name]);
+        }        
       }
       //Verificar email
       function varificarEmail(even){
@@ -1364,6 +1363,9 @@
           alert("Gracias por diligenciar el formulario");
         }, false);
 
+      }
+      function onSubmit(){
+        console.log( dataForm)
       }
 
     </script>
