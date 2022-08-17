@@ -1097,15 +1097,6 @@
         <div class="buttons">
           <button
             type="button"
-            id="next"
-            value="next"
-            onclick="paginado(this)"
-            hidden
-          >
-            Siguiente
-          </button>
-          <button
-            type="button"
             id="back"
             value="back"
             onclick="paginado(this)"
@@ -1113,6 +1104,15 @@
           >
             Atras
           </button>
+          <button
+            type="button"
+            id="next"
+            value="next"
+                 
+          >
+            Siguiente
+          </button>
+          
           <input type="submit"   name="submit" id="submit" hidden />
         </div>
       </form>
@@ -1243,7 +1243,7 @@
         }
         let next = document.getElementById("next");
         let info = document.getElementById("NextInfo");
-        if (page == 4 || field <= 13) {
+        if (page == 4 ) {
           next.hidden = true;
           info.hidden = false;
         } else {
@@ -1254,7 +1254,7 @@
       }
       //Paginado 
       function paginado(eve) {
-        if (eve.value == "next") {
+        if (eve.value == "next") {          
           page += 1;
         } else {
           page -= 1;
@@ -1288,7 +1288,7 @@
         } else{
           dataForm[eve.name] = 'No';
         }  
-        console.log(dataForm)      
+            
       }
       //Verificar email
       function varificarEmail(even){
@@ -1315,19 +1315,42 @@
         submit.hidden = false;
         document.getElementById("submit").addEventListener("click", (event) => {
           
-          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email)){                        
+          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email) && field > 30){                        
             alert("Gracias por diligenciar el formulario");
             
             return            
           }                             
           alert("Por favor ingrese una dirección de correo electrono (email)!")
+          event.preventDefault();
         }, false);
         
          
       }
-      function onSubmit(){  
-          
-      }
+      document.getElementById("next").addEventListener("click", (event) => {
+          let valu = document.getElementById("next");
+        if (valu.value == "next") {
+          if(field < 14){
+            console.log("entro2")
+            alert("Es necesario llenar todos los campos para continuar")
+            event.preventDefault()
+            }else{  
+              page += 1;
+            }     
+         
+        } else {
+          page -= 1;
+        }
+
+        pages.map((p, i) => {
+          if (i == page) {
+            p.hidden = false;
+          } else {
+            p.hidden = true;
+          }
+        });
+        habilitarBotones();
+      }, false);
+      
     
 
     </script>
