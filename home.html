@@ -1315,10 +1315,14 @@
         submit.hidden = false;
         document.getElementById("submit").addEventListener("click", (event) => {
           
-          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email) && field > 30){                        
-            alert("Gracias por diligenciar el formulario");
-            
-            return            
+          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email) ){                        
+            if(field > 30){
+              alert("Gracias por diligenciar el formulario");            
+              return  
+            }
+            alert("Es necesario llenar todos los campos para continuar");
+            event.preventDefault();         
+                      
           }                             
           alert("Por favor ingrese una dirección de correo electrono (email)!")
           event.preventDefault();
