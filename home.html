@@ -1117,8 +1117,8 @@
       </form>
     </div>
     <script>
-   let dataForm = {"ley":"No","email":"","TRABAJA":"","emailForm": ""}; 
-   
+    let dataForm = {"ley":"No","email":"","TRABAJA":"","emailForm": ""}; 
+ 
  
 
   
@@ -1165,6 +1165,7 @@
         
         console.log(dataForm);
         console.log(field);
+        console.log(37  + nDependientes)
       }
       ///Habilita un nuevo campo si es elegida la opcion otros en el campo 10/12/37
       function habilitarCamposTipoOtro(eve){
@@ -1342,8 +1343,8 @@
           let valu = document.getElementById("next");
           
           if(page == 3){
-            console.log(page)
-            if(field < ( 39  + nDependientes )){
+            
+            if(field < ( 35  + nDependientes )){
               
               alert("Es necesario llenar todos los campos para continuar")
               event.preventDefault()
@@ -1354,7 +1355,7 @@
           if(page == 2){
                     
 
-            if(field < (35 + nDependientes)){
+            if(field < (33 + nDependientes)){
               
               alert("Es necesario llenar todos los campos para continuar")
               event.preventDefault()
