@@ -1107,8 +1107,7 @@
           <button
             type="button"
             id="next"
-            value="next"
-                 
+            value="next"                 
           >
             Siguiente
           </button>
@@ -1118,8 +1117,9 @@
       </form>
     </div>
     <script>
-    let dataForm = {"ley":"No","email":"","emailForm": ""};     
-   
+    let dataForm = {"ley":"No","email":"","TRABAJA":"","emailForm": ""};     
+ 
+
   
 
       let multiS ={};
@@ -1134,6 +1134,7 @@
       
       let page = 0;
       let field = 0;
+      let nDependientes = 1;
 
       let checks = document.querySelectorAll(".checkDocument");
 
@@ -1160,7 +1161,7 @@
         if(even.name == 'BECA'||even.name == 'Eps_si'||even.name == 'LENTES_RECETADOS'||even.name == 'DIAGNOSTICO_MEDICO_ESPECIAL'||even.name == 'TRABAJA' ||even.name == 'NUMERO_HERMANOS'){
           camposDependientes(even);
         }
-        
+        console.log(field);
       }
       ///Habilita un nuevo campo si es elegida la opcion otros en el campo 10/12/37
       function habilitarCamposTipoOtro(eve){
@@ -1192,6 +1193,7 @@
       function camposDependientes(eve){
         let camposD = eve.name + 'Dependiente'
         let elementos = document.querySelectorAll(`.${camposD}`);
+
         /*/Valida si el campo tiene un numero superior a 0(Pregunta 16)
         if(eve.name == 'NUMERO_HERMANOS'){
           [...elementos].forEach((i,v)=>{
@@ -1207,8 +1209,10 @@
           [...elementos].forEach((i,v)=>{
             if(eve.value =='No' ){
               i.hidden = true;
+              nDependientes -= 1;
             }else{
               i.hidden = false;
+              nDependientes += 1;
             }
           });
       
@@ -1229,7 +1233,8 @@
       //La activacion de botones depende de el numero de campos diligenciados
       function habilitarBotones() {
         let submit = document.getElementById("submit");
-        if (field > 35 && page == 4 &&  dataForm.emailForm != '' ) {
+       
+        if ( dataForm.TRABAJA != "" && page == 4 &&  dataForm.emailForm != '' ) {
           submit.hidden = false;
         } else {
           submit.hidden = true;
@@ -1316,13 +1321,13 @@
         document.getElementById("submit").addEventListener("click", (event) => {
           
           if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(dataForm.email) ){                        
-            if(field > 30){
+            if(dataForm.TRABAJA != ""){
               alert("Gracias por diligenciar el formulario");            
               return  
             }
             alert("Es necesario llenar todos los campos para continuar");
             event.preventDefault();         
-                      
+            return      
           }                             
           alert("Por favor ingrese una dirección de correo electrono (email)!")
           event.preventDefault();
@@ -1332,18 +1337,54 @@
       }
       document.getElementById("next").addEventListener("click", (event) => {
           let valu = document.getElementById("next");
-        if (valu.value == "next") {
-          if(field < 14){
-            console.log("entro2")
-            alert("Es necesario llenar todos los campos para continuar")
-            event.preventDefault()
-            }else{  
+          
+          if(page == 3){
+            console.log(page)
+            if(field < ( 43  + nDependientes )){
+              
+              alert("Es necesario llenar todos los campos para continuar")
+              event.preventDefault()
+            }else{
               page += 1;
-            }     
-         
-        } else {
-          page -= 1;
-        }
+            }
+          }
+          if(page == 2){
+            let camposdepen = 36 + nDependientes;            
+
+            if(field < (36 + nDependientes)){
+              
+              alert("Es necesario llenar todos los campos para continuar")
+              event.preventDefault()
+            }else{
+              page += 1;
+            }
+          }
+
+          if(page == 1){
+            
+            if(field < 31){
+              
+              alert("Es necesario llenar todos los campos para continuar")
+              event.preventDefault()
+            }else{
+              page += 1;
+            }
+          }
+          
+           if(page == 0){
+          
+            if(field < 14){          
+              alert("Es necesario llenar todos los campos para continuar")
+              event.preventDefault()
+            }else{
+              page += 1;
+            }
+          }
+
+
+
+          
+
 
         pages.map((p, i) => {
           if (i == page) {
