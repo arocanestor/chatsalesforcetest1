@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css" />
+
+    <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+
+    <style type="text/css">
+      .PopApp {
+        z-index: 3;
+        background: rgba(0, 0, 0, 0.1);
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+      }
+      .botnLey {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .cuadroDialogo {
+        width: 80%;
+        height: 80%;
+        background-color: white;
+        padding: 30px;
+        display: flex;
+      }
+      .contenedotLey {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+      .contenedotLey > p {
+        margin: 15px;
+      }
+
+      body {
+        color: #858585;
+      }
+
+      .form-group {
+        margin-bottom: 0.5rem;
+      }
+
+      .view-company {
+        display: none;
+      }
+
+      .btn-primary {
+        background-color: #7bc142;
+        border-color: #7bc142;
+        border-radius: 23px;
+        padding: 5px 20px;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:active,
+      .btn-primary:focus {
+        background-color: #7bc142;
+        border-color: #7bc142;
+      }
+
+      label,
+      option,
+      select,
+      input,
+      textarea {
+        font-family: "latoregular";
+        font-size: 14px;
+        color: #858585;
+        line-height: 16px;
+      }
+
+      select {
+        background-image: url("bootstrap5/Imagen/abajo.png");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+      }
+
+      .col-sm-6 {
+        margin: 0 auto;
+      }
+
+      a {
+        text-decoration: none;
+        color: #858585;
+      }
+
+      a:hover {
+        text-decoration: none;
+        color: #858585;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .btn-primary {
+          margin-left: 40%;
+        }
+      }
+
+      #thank-you-message {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+
+    <script async src="bootstrap5/js/validate.js"></script>
+    <script type="text/javascript">
+      function showContent(o) {
+        divCompany = document.getElementById("compania");
+        divNit = document.getElementById("Nit");
+        company = document.getElementById("company");
+        nitEmpresa = document.getElementById("00N74000000MXbW");
+        personaNatural = document.querySelector(".PersonaNatural");
+        personaJuridica = document.querySelector(".PersonaJuridica");
+
+        if (o.value == "Persona" || o.value == "ninguno") {
+          divCompany.style.display = "none";
+          divNit.style.display = "none";
+          company.value = "TUIO S.A.S";
+          nitEmpresa.value = "901331726-7";
+        } else {
+          divCompany.style.display = "block";
+          divNit.style.display = "block";
+          company.required = "true";
+          nitEmpresa.value = "";
+          company.value = "";
+        }
+        ///Bonotones de Autorizacion tratamiento de datos
+        if (o.value == "Persona") {
+          personaJuridica.hidden = true;
+          personaNatural.hidden = false;
+        }
+        if (o.value == "PersonaJuridica") {
+          personaNatural.hidden = true;
+          personaJuridica.hidden = false;
+        }
+
+        if (o.value == "ninguno") {
+          personaNatural.hidden = true;
+          personaJuridica.hidden = true;
+        }
+      }
+
+      function emailValidation(email) {
+        if (
+          /^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/.test(
+            email.value
+          )
+        ) {
+          console.log(true);
+        } else {
+          console.log(false);
+          alert("Email invalido!");
+          let invalidMail = document.querySelector("#email");
+          invalidMail.value = "";
+          invalidMail.focus();
+        }
+      }
+
+      function nitValidation(nit) {
+        let regexNit = /(^[0-9]+-{1}[0-9]{1})/;
+        if (regexNit.test(nit.value)) {
+          console.log(true);
+        } else {
+          alert("Identificacion invalida!");
+          let invalidNit = document.getElementById("00N74000000MXbW");
+          invalidNit.value = "";
+          invalidNit.focus();
+        }
+      }
+
+      function mostarCarros(ev) {
+        let eleccion = document.querySelectorAll(".view-marca");
+        [...eleccion].map((i) => {
+          if (i.id == ev.value) {
+            i.hidden = false;
+            return;
+          }
+          i.hidden = true;
+        });
+      }
+
+      function conformarPM(eve) {
+        let confArray = "";
+        const mult = document.querySelectorAll(".conformarPM");
+        interes = document.getElementById("00N74000000MiVb");
+        [...mult].map((i) => {
+          if (i.checked == true) {
+            confArray += i.value + ";";
+          }
+        });
+        let result = confArray.slice(0, -1);
+        interes.value = result;
+        console.log(interes.value);
+      }
+
+      function MostratLey(npopap) {
+        document.getElementById(`PopApp${npopap}`).hidden = false;
+      }
+
+      function OcultarLey(npopap) {
+        document.getElementById(`PopApp${npopap}`).hidden = true;
+
+        document.getElementById(`checkbox${npopap}`).checked = true;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="PopApp" id="PopApp1" hidden>
+      <div class="cuadroDialogo">
+        <div>
+          <h1>Política de tratamiento de datos personales</h1>
+          <p>
+            En virtud de lo previsto por la LEY 1581 DE 2012, el DECRETO 1377 DE
+            2013 y el DECRETO ÚNICO REGLAMENTARIO 1074 DE 2015 (según se
+            encuentran vigentes, el “Régimen de Protección de Datos”), autorizo
+            libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de
+            naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el
+            registro mercantil con matrícula número 03180233, con Número de
+            Identificación Tributaria - NIT 901.331.726-7, correo electrónico
+            [<a href="/"
+              ><a class="ancla" href="mailto: protecciondedatos@rentingtuio.com"
+                >protecciondedatos@rentingtuio.com</a
+              ></a
+            >
+            ], página web www.rentingtuio.com.co y número de teléfono +57 (601)
+            6253211 (en adelante "TUIO"), para que, en su calidad de
+            responsable, realice el tratamiento de mis datos personales, en los
+            términos que se señalan a continuación: (1) TUIO podrá recolectar,
+            almacenar, usar, circular o suprimir mis datos personales, bajo los
+            términos establecidos en la política de tratamiento de datos
+            personales de TUIO (la “Política de Datos Personales”). Según se
+            define en la Política de Datos Personales de TUIO, datos personales
+            comprenden, individual o conjuntamente considerados, al nombre,
+            nacionalidad, número de documento de identidad y fecha de
+            expedición, domicilio, teléfono, correo electrónico, fecha y lugar
+            de nacimiento, estado civil, género, tipo de vivienda, estrato,
+            información de contacto, lugar de trabajo, referencias comerciales,
+            personales y familiares, firma manuscrita, digital o electrónica,
+            datos biométricos (considerados datos sensibles) o cualquier otra
+            información que sea o llegue a ser considerada un dato personal; (2)
+            otorgo mi consentimiento –previo, expreso e informado– para que TUIO
+            realice el tratamiento de mis datos personales para las finalidades
+            descritas en la Política de Datos Personales; (3) declaro con la
+            firma de la presente autorización que he leído y entiendo la
+            Política de Datos Personales, la cual podré consultar en cualquier
+            momento a través del siguiente enlace www.rentingtuio.com.co; (4)
+            TUIO me informó mis derechos a conocer, actualizar, corregir o
+            eliminar mis datos personales, los cuales podré ejercer ante el
+            oficial de protección de datos de TUIO mediante comunicación escrita
+            que envíe al correo electrónico [<a
+              class="ancla"
+              href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de
+            Bogotá D.C; (5) TUIO me informó la facultad que me asiste de dar o
+            no respuesta a preguntas que versen sobre datos sensibles o datos de
+            niñas, niños y adolescentes; (6) entiendo que podré presentar quejas
+            ante la Superintendencia de Industria y Comercio en el evento en el
+            que mis consultas o reclamaciones no sean resueltas en los términos
+            establecidos en la LEY 1581 DE 2012 o cuando considere que TUIO ha
+            contravenido las disposiciones contenidas en el Régimen de
+            Protección de Datos
+          </p>
+          <button onclick="OcultarLey(1)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+    <div class="PopApp" id="PopApp2" hidden>
+      <div class="cuadroDialogo">
+        <div>
+          <h1>Consulta de mis datos financieros</h1>
+          <p>
+            En virtud de lo previsto por la Ley 1266 de 2008, autorizo libre y
+            voluntariamente a TUIO S.A.S., una sociedad colombiana, de
+            naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el
+            registro mercantil con matrícula número 03180233, con Número de
+            Identificación Tributaria - NIT 901.331.726-7, correo electrónico
+            [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >], página web www.rentingtuio.com.co y número de teléfono +57 (601)
+            6253211 (en adelante "TUIO"),para que, en su calidad de fuente,
+            usuario y responsable, realice el tratamiento de mis datos
+            personales financieros, crediticios, comerciales, de servicios y,
+            eventualmente, proveniente de terceros países (los “Datos
+            Financieros”) en los términos que se señalan a continuación: (1)
+            TUIO podrá recolectar, almacenar, usar, consultar, circular,
+            reportar o suprimir mis Datos Financieros los cuales comprenden,
+            individual o conjuntamente considerados mi nombre, nacionalidad,
+            número de documento de identidad y fecha de expedición,
+            comportamiento como deudor, capacidad de pago, cumplimiento de
+            obligaciones financieras, puntaje crediticio, historial de crédito,
+            información histórica y actual relativa a mi situación financiera y
+            patrimonial o cualquier otra información que sea o llegue a ser
+            considerada un Dato Financiero protegido por la Ley 1266 de 2008;
+            (2) otorgo mi consentimiento –previo, expreso e informado– para que
+            TUIO: (i) verifique mi identidad con miras al establecimiento y
+            mantenimiento de relaciones contractuales y en operaciones
+            financieras; (ii) consulte, en cualquier tiempo, con fines
+            estadísticos, de control y/o supervisión, mis Datos Financieros en
+            las centrales de riesgo o cualquier base de datos, para valorar
+            cualquier riesgo de incumplimiento de las obligaciones financieras a
+            mi cargo; (iii) analice riesgos financieros para el ofrecimiento de
+            productos y servicios; (iv) verifique el cumplimiento o
+            incumplimiento de obligaciones fiscales, parafiscales y aquellas
+            relacionadas con el lavado de activos o financiación del terrorismo;
+            (v) reporte ante las centrales de riesgo o cualquier base de datos,
+            tanto el cumplimiento oportuno como el incumplimiento de mis
+            obligaciones legales y contractuales, previa comunicación que se me
+            deberá enviar como titular de la información; (vi) envíe mis Datos
+            Financieros a las centrales de riesgo, a cualquier base de datos u
+            operadores de la información para que estas puedan tratarla,
+            analizarla, clasificarla y luego suministrarla a los usuarios de la
+            información; (vii) realice, directamente o a través de terceros,
+            actividades de cobranza; (viii) obtenga información sobre mis
+            relaciones comerciales con otras entidades ya sean públicas o
+            privadas; (ix) realice estudios de mercado o investigaciones
+            comerciales o estadísticas; (x) adelante cualquier trámite ante una
+            autoridad pública o privada, respecto de la cual el uso de mis Datos
+            Financieros sea pertinente; (xi) conserve mis Datos Financieros para
+            los fines aquí establecidos; (3) declaro con la firma de la presente
+            autorización que he leído y entiendo la Política de Datos
+            Personales, la cual podré consultar en cualquier momento a través
+            del siguiente enlace
+            <a href="http://www.rentingtuio.com.co"></a> www.rentingtuio.com.co;
+            (4) TUIO me informó mis derechos a conocer, actualizar, corregir o
+            eliminar mis datos personales, los cuales podré ejercer ante el
+            oficial de protección de datos de TUIO mediante comunicación escrita
+            que envíe al correo electrónico [<a
+              class="ancla"
+              href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de
+            Bogotá D.C; (5) entiendo que podré presentar quejas ante la
+            Superintendencia de Industria y Comercio o la Superintendencia
+            Financiera en el evento en el que mis consultas o reclamaciones no
+            sean resueltas en los términos establecidos en la Ley 1266 de 2008 o
+            cuando considere que TUIO ha contravenido las disposiciones
+            contenidas en la referida norma.
+          </p>
+          <button onclick="OcultarLey(2)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+    <div class="PopApp" id="PopApp3" hidden>
+      <div class="cuadroDialogo">
+        <div>
+          <h1>Política de tratamiento de datos personales</h1>
+          <p>
+            En virtud de lo previsto por la Ley 1581 de 2012, el Decreto 1377 de
+            2013 y el Decreto Único Reglamentario 1074 de 2015 (según se
+            encuentran vigentes, el “Régimen de Protección de Datos”), autorizo
+            libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de
+            naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el
+            registro mercantil con matrícula número 03180233, con Número de
+            Identificación Tributaria - NIT 901.331.726-7, correo electrónico
+            [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >], página web www.rentingtuio.com.co y número de teléfono +57 (601)
+            6253211 (en adelante "TUIO"), para que, en su calidad de
+            responsable, realice el tratamiento de mis datos personales, en los
+            términos que se señalan a continuación: (1) TUIO podrá recolectar,
+            almacenar, usar, circular o suprimir mis datos personales, bajo los
+            términos establecidos en la política de tratamiento de datos
+            personales de TUIO (la “Política de Datos Personales”). Según se
+            define en la Política de Datos Personales de TUIO, datos personales
+            comprenden, individual o conjuntamente considerados, al nombre,
+            nacionalidad, número de documento de identidad y fecha de
+            expedición, domicilio, teléfono, correo electrónico, fecha y lugar
+            de nacimiento, estado civil, género, tipo de vivienda, estrato,
+            información de contacto, lugar de trabajo, referencias comerciales,
+            personales y familiares, firma manuscrita, digital o electrónica,
+            datos biométricos (considerados datos sensibles) o cualquier otra
+            información que sea o llegue a ser considerada un dato personal; (2)
+            otorgo mi consentimiento –previo, expreso e informado– para que TUIO
+            realice el tratamiento de mis datos personales para las finalidades
+            descritas en la Política de Datos Personales; (3) declaro con la
+            firma de la presente autorización que he leído y entiendo la
+            Política de Datos Personales, la cual podré consultar en cualquier
+            momento a través del siguiente enlace www.rentingtuio.com.co; (4)
+            TUIO me informó mis derechos a conocer, actualizar, corregir o
+            eliminar mis datos personales, los cuales podré ejercer ante el
+            oficial de protección de datos de TUIO mediante comunicación escrita
+            que envíe al correo electrónico [<a
+              class="ancla"
+              href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de
+            Bogotá D.C; (5) TUIO me informó la facultad que me asiste de dar o
+            no respuesta a preguntas que versen sobre datos sensibles o datos de
+            niñas, niños y adolescentes; (6) entiendo que podré presentar quejas
+            ante la Superintendencia de Industria y Comercio en el evento en el
+            que mis consultas o reclamaciones no sean resueltas en los términos
+            establecidos en la Ley 1581 de 2012 o cuando considere que TUIO ha
+            contravenido las disposiciones contenidas en el Régimen de
+            Protección de Datos.
+          </p>
+          <button onclick="OcultarLey(3)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+    <div class="PopApp" id="PopApp4" hidden>
+      <div class="cuadroDialogo">
+        <div>
+          <h1>Consulta de mis datos financieros</h1>
+          <p>
+            En virtud de lo previsto por la Ley 1266 de 2008, autorizo libre y
+            voluntariamente a TUIO S.A.S., una sociedad colombiana, de
+            naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el
+            registro mercantil con matrícula número 03180233, con Número de
+            Identificación Tributaria - NIT 901.331.726-7, correo electrónico
+            [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >], página web www.rentingtuio.com.co y número de teléfono +57 (601)
+            6253211 (en adelante "TUIO"),para que, en su calidad de fuente,
+            usuario y responsable, realice el tratamiento de mis datos
+            personales financieros, crediticios, comerciales, de servicios y,
+            eventualmente, proveniente de terceros países (los “Datos
+            Financieros”) en los términos que se señalan a continuación: (1)
+            TUIO podrá recolectar, almacenar, usar, consultar, circular,
+            reportar o suprimir mis Datos Financieros los cuales comprenden,
+            individual o conjuntamente considerados mi nombre, nacionalidad,
+            número de documento de identidad y fecha de expedición,
+            comportamiento como deudor, capacidad de pago, cumplimiento de
+            obligaciones financieras, puntaje crediticio, historial de crédito,
+            información histórica y actual relativa a mi situación financiera y
+            patrimonial o cualquier otra información que sea o llegue a ser
+            considerada un Dato Financiero protegido por la Ley 1266 de 2008;
+            (2) otorgo mi consentimiento –previo, expreso e informado– para que
+            TUIO: (i) verifique mi identidad con miras al establecimiento y
+            mantenimiento de relaciones contractuales y en operaciones
+            financieras; (ii) consulte, en cualquier tiempo, con fines
+            estadísticos, de control y/o supervisión, mis Datos Financieros en
+            las centrales de riesgo o cualquier base de datos, para valorar
+            cualquier riesgo de incumplimiento de las obligaciones financieras a
+            mi cargo; (iii) analice riesgos financieros para el ofrecimiento de
+            productos y servicios; (iv) verifique el cumplimiento o
+            incumplimiento de obligaciones fiscales, parafiscales y aquellas
+            relacionadas con el lavado de activos o financiación del terrorismo;
+            (v) reporte ante las centrales de riesgo o cualquier base de datos,
+            tanto el cumplimiento oportuno como el incumplimiento de mis
+            obligaciones legales y contractuales, previa comunicación que se me
+            deberá enviar como titular de la información; (vi) envíe mis Datos
+            Financieros a las centrales de riesgo, a cualquier base de datos u
+            operadores de la información para que estas puedan tratarla,
+            analizarla, clasificarla y luego suministrarla a los usuarios de la
+            información; (vii) realice, directamente o a través de terceros,
+            actividades de cobranza; (viii) obtenga información sobre mis
+            relaciones comerciales con otras entidades ya sean públicas o
+            privadas; (ix) realice estudios de mercado o investigaciones
+            comerciales o estadísticas; (x) adelante cualquier trámite ante una
+            autoridad pública o privada, respecto de la cual el uso de mis Datos
+            Financieros sea pertinente; (xi) conserve mis Datos Financieros para
+            los fines aquí establecidos; (3) declaro con la firma de la presente
+            autorización que he leído y entiendo la Política de Datos
+            Personales, la cual podré consultar en cualquier momento a través
+            del siguiente enlace www.rentingtuio.com.co; (4) TUIO me informó mis
+            derechos a conocer, actualizar, corregir o eliminar mis datos
+            personales, los cuales podré ejercer ante el oficial de protección
+            de datos de TUIO mediante comunicación escrita que envíe al correo
+            electrónico [<a
+              class="ancla"
+              href="mailto: protecciondedatos@rentingtuio.com"
+              >protecciondedatos@rentingtuio.com</a
+            >] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de
+            Bogotá D.C; (5) entiendo que podré presentar quejas ante la
+            Superintendencia de Industria y Comercio o la Superintendencia
+            Financiera en el evento en el que mis consultas o reclamaciones no
+            sean resueltas en los términos establecidos en la Ley 1266 de 2008 o
+            cuando considere que TUIO ha contravenido las disposiciones
+            contenidas en la referida norma.
+          </p>
+          <button onclick="OcultarLey(4)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-bottom: 20px">
+      <form
+        action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+        method="POST"
+      >
+        <input type="hidden" name="oid" value="00D740000008fpR" />
+        <input type="hidden" name="retURL" value="http://" />
+
+        <!--  ----------------------------------------------------------------------  -->
+        <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+        <!--  these lines if you wish to test in debug mode.                          -->
+        <!--  <input type="hidden" name="debug" value=1>                              -->
+        <!--  <input type="hidden" name="debugEmail"                                  -->
+        <!--  value="victor.castro@seidor.com">                                       -->
+        <!--  ----------------------------------------------------------------------  -->
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="first_name">Nombres</label
+            ><input
+              id="first_name"
+              maxlength="40"
+              required="true"
+              name="first_name"
+              size="20"
+              type="text"
+              class="form-control"
+            /><br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="last_name">Apellidos</label
+            ><input
+              id="last_name"
+              maxlength="80"
+              required="true"
+              name="last_name"
+              size="20"
+              type="text"
+              class="form-control"
+            /><br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="email">Correo electronico</label
+            ><input
+              id="email"
+              maxlength="80"
+              name="email"
+              required="true"
+              size="20"
+              type="text"
+              class="form-control"
+              onchange="emailValidation(this)"
+            />
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="mobile">Telefono</label
+            ><input
+              id="mobile"
+              maxlength="40"
+              name="mobile"
+              size="20"
+              type="text"
+              class="form-control"
+            /><br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="tipoCliente">Tipo de persona</label
+            ><select
+              id="00N74000000MXgd"
+              value="ninguno"
+              name="00N74000000MXgd"
+              title="Tipo de cliente"
+              onchange="showContent(this)"
+              class="form-control"
+            >
+              <option value="ninguno"></option>
+              <option value="Persona">Persona natural</option>
+              <option value="Empresa">Persona Juridica</option></select
+            ><br />
+          </div>
+        </div>
+
+        <div class="form-group view-company" id="compania">
+          <div class="col-sm-6">
+            <label for="company">Empresa</label
+            ><input
+              id="company"
+              maxlength="40"
+              name="company"
+              size="20"
+              type="text"
+              class="form-control"
+            /><br />
+          </div>
+        </div>
+
+        <div class="form-group view-company" id="Nit">
+          <div class="col-sm-6">
+            <label for="Nit"> Nit Empresa</label
+            ><input
+              id="00N74000000MXbW"
+              maxlength="20"
+              name="00N74000000MXbW"
+              size="20"
+              type="text"
+              class="form-control"
+              onchange="nitValidation(this)"
+            /><br />
+          </div>
+        </div>
+
+        <input
+          id="lead_source"
+          name="lead_source"
+          type="hidden"
+          value="Website"
+        />
+        <input id="00N74000000MiVb" name="00N74000000MiVb" type="hidden" />
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label>Marcas</label
+            ><select
+              id="Marca"
+              name="Interes"
+              title="Interes"
+              class="form-control"
+              onchange="mostarCarros(this)"
+            >
+              <option value="ninguno">---Ninguno---</option>
+              <option value="Peugeot">Peugeot</option>
+              <option value="Opel">Opel</option>
+              <option value="SEAT">Seat</option>
+              <option value="Volkswagen">Volkswagen</option>
+              <option value="Toyota">Toyota</option>
+              <option value="FIAT">Fiat</option>
+              <option value="Renault">Renault</option>
+              <option value="DODGE">Dodge</option>
+              <option value="RAM">Ram</option>
+              <option value="JEEP">Jeep</option>
+              <option value="KIA">Kia</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Mazda">Mazda</option></select
+            ><br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Peugeot" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-001"
+              onclick="conformarPM(this)"
+            />Peugeot 2008 ALLURE 1.2L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-002"
+              onclick="conformarPM(this)"
+            />Peugeot 3008 ACTIVE 1.6L Turbo<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-003"
+              onclick="conformarPM(this)"
+            />Peugeot 3008 ALLURE 1.6L Turbo<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Opel" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-004"
+              onclick="conformarPM(this)"
+            />Opel Crossland Elegance<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-005"
+              onclick="conformarPM(this)"
+            />Opel Grandland Edition<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="SEAT" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-006"
+              onclick="conformarPM(this)"
+            />SEAT Ibiza<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-007"
+              onclick="conformarPM(this)"
+            />SEAT Arona FR<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-008"
+              onclick="conformarPM(this)"
+            />SEAT Ateca<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Volkswagen" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-009"
+              onclick="conformarPM(this)"
+            />Volkswagen Gol Comfortline MT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-0010"
+              onclick="conformarPM(this)"
+            />Volkswagen Polo Comfortline<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-0011"
+              onclick="conformarPM(this)"
+            />Volkswagen Voyage Trendline AT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-012"
+              onclick="conformarPM(this)"
+            />Volkswagen Teramont Highline<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-013"
+              onclick="conformarPM(this)"
+            />Volkswagen T-Cross Trendline AT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-014"
+              onclick="conformarPM(this)"
+            />Volkswagen T-Cross Comfortline<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-015"
+              onclick="conformarPM(this)"
+            />Volkswagen Nivus comfortline MT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-016"
+              onclick="conformarPM(this)"
+            />Volkswagen Amarok Trendline &quot;T&quot; DC 4x4<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-017"
+              onclick="conformarPM(this)"
+            />Volkswagen Amarok comfortline DC 4x4<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-018"
+              onclick="conformarPM(this)"
+            />Volkswagen Saveiro Plus<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Toyota" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-019"
+              onclick="conformarPM(this)"
+            />Toyota Fortuner SRV 4X4<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Renault" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-020"
+              onclick="conformarPM(this)"
+            />Renault Sandero Zen<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-021"
+              onclick="conformarPM(this)"
+            />Renault Alaskan Cargo<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-022"
+              onclick="conformarPM(this)"
+            />Renault Kangoo Express<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="DODGE" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="WD6D"
+              onclick="conformarPM(this)"
+            />DODGE DURANGO GT 3.6L AWD 7 PUESTOS<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="FIAT" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="341L"
+              onclick="conformarPM(this)"
+            />FIAT MOBI LIKE 1.0L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="358D"
+              onclick="conformarPM(this)"
+            />FIAT ARGO DRIVE 1.3L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-023"
+              onclick="conformarPM(this)"
+            />FIAT ARGO TREKKING 1.3L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-024"
+              onclick="conformarPM(this)"
+            />FIAT PULSE DRIVE MT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-025"
+              onclick="conformarPM(this)"
+            />FIAT PULSE IMPETUS AT<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="RAM" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="265R"
+              onclick="conformarPM(this)"
+            />RAM V700 RAPID<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-026"
+              onclick="conformarPM(this)"
+            />RAM 700 - SLT CABINA SENCILLA 1.4L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-027"
+              onclick="conformarPM(this)"
+            />RAM 700 - BIG HORN DOBLE CABINA 1.4L<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="DS61-2019"
+              onclick="conformarPM(this)"
+            />RAM 1500 DT BIG HORN 36L eTORQUE DOBLE CABINA 4X4 8AT - Mild
+            Hybrid<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="JEEP" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-028"
+              onclick="conformarPM(this)"
+            />JEEP RENEGADE 1.8L 4X2 SPORT X MT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-029"
+              onclick="conformarPM(this)"
+            />JEEP RENEGADE 1.8L 4X2 CONNECT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-030"
+              onclick="conformarPM(this)"
+            />JEEP COMPASS 1.3 TURBO<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-031"
+              onclick="conformarPM(this)"
+            />JEEP WRANGLER SPORT 2 PUERTAS<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-032"
+              onclick="conformarPM(this)"
+            />JEEP WRANGLER SPORT-RUBICON 3.6L A/T 4X4 TECHO DURO<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-033"
+              onclick="conformarPM(this)"
+            />JEEP WRANGLER UNLIMITED SPORT-RUBICON 3.6L A/T 4X4 TECHO DURO<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-034"
+              onclick="conformarPM(this)"
+            />JEEP WRANGLER SPORT JL AT<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-035"
+              onclick="conformarPM(this)"
+            />JEEP COMMANDER OVERLAND 1.3T<br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-036"
+              onclick="conformarPM(this)"
+            />JEEP WRANGLER GLADIATOR RUBICON 4X4<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Nissan" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-037"
+              onclick="conformarPM(this)"
+            />Nissan FRONTIER 4X2 GASOLINA<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca" id="Mazda" hidden>
+          <div class="col-sm-6">
+            <label>Modelo</label><br />
+            <input
+              class="conformarPM"
+              type="checkbox"
+              name=""
+              value="VH-038"
+              onclick="conformarPM(this)"
+            />Mazda CX30 GRAND TOURING 2.5<br />
+          </div>
+        </div>
+
+        <div class="form-group view-marca " id="KIA" hidden>
+          <div class=" col-sm-6">
+            <label>Modelo</label><br />
+            <div class="container ">
+              <div class="row ">
+                <div class="col">
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M10__25G1002"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO EMOTION MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M11__25G1002"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO EMOTION A/C MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M23__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO VIBRANT MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2A23__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M44__25G1202"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO ZENITH MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2A44__25G1202"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M66__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO GT-LINE GT LINE MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2A66__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO GT-LINE GT LINE AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2M61__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO X-LINE XLINE MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="JA2A61__25G1201"
+                    onclick="conformarPM(this)"
+                  />KIA PICANTO X-LINE XLINE AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2M21__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) EMOTION MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2A21__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) EMOTION AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2M41__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) VIBRANT MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2A41__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2M52__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) ZENITH MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2A52__24G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO SEDÁN (SC) ZENITH AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2M21__25G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO HATCHBACK (SC) EMOTION MT<br />
+                  
+                </div>
+                <div class="col">
+                  
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2A41__25G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO HATCHBACK (SC) VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2M52__25G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO HATCHBACK (SC) ZENITH MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SC2A52__25G1402"
+                    onclick="conformarPM(this)"
+                  />KIA RIO HATCHBACK (SC) ZENITH AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="QY1M20__25G1501"
+                    onclick="conformarPM(this)"
+                  />KIA SONET (QY) EMOTION MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="QY1M40__25G1501"
+                    onclick="conformarPM(this)"
+                  />KIA SONET (QY) VIBRANT MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="QY1A45__25G1501"
+                    onclick="conformarPM(this)"
+                  />KIA SONET (QY) VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="QY1A60__25G1501"
+                    onclick="conformarPM(this)"
+                  />KIA SONET (QY) ZENITH AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="DE2A32__25H1600"
+                    onclick="conformarPM(this)"
+                  />KIA NIRO 2ND GENERATION  EMOTION AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="DE2A52__25H1600"
+                    onclick="conformarPM(this)"
+                  />KIA NIRO 2ND GENERATION  ZENITH AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SP1M20__25G1601"
+                    onclick="conformarPM(this)"
+                  />KIA SELTOS (SP2i) EMOTION MT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SP1A25__25G1601"
+                    onclick="conformarPM(this)"
+                  />KIA SELTOS (SP2i) EMOTION AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SP1A40__25G1601"
+                    onclick="conformarPM(this)"
+                  />KIA SELTOS (SP2i) VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="SP1A60__25G1600"
+                    onclick="conformarPM(this)"
+                  />KIA SELTOS (SP2i) ZENITH AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="NQ1A30__25G2000"
+                    onclick="conformarPM(this)"
+                  />KIA SPORTAGE NQ5 DESIRE AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="NQ1A40__25G2000"
+                    onclick="conformarPM(this)"
+                  />KIA SPORTAGE NQ5 VIBRANT AT<br />
+                  <input
+                    class="conformarPM"
+                    type="checkbox"
+                    name=""
+                    value="NQ1A50__25G2000"
+                    onclick="conformarPM(this)"
+                  />KIA SPORTAGE NQ5 ZENITH AT<br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <label for="description">Descripcion</label
+            ><textarea name="description" class="form-control"></textarea><br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-6">
+            <div class="PersonaNatural" hidden>
+              <div class="contenedotLey">
+                <input id="checkbox1" type="checkbox" />
+                <p>
+                  Autorizo de manera previa, expresa e informada el tratamiento
+                  de mis datos personales de acuerdo con la
+                  <a id="botnLey" class="botnLey" onclick="MostratLey(1)"
+                    >política de tratamiento de datos personales.</a
+                  >
+                </p>
+              </div>
+              <div class="contenedotLey">
+                <input id="checkbox2" type="checkbox" />
+                <p>
+                  Autorizo libre y voluntariamente, de manera expresa e
+                  irrevocable,
+                  <a id="botnLey" class="botnLey" onclick="MostratLey(2)"
+                    >la consulta de mis datos financieros en cualquier tiempo y
+                    el reporte a centrales de riesgos.</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="PersonaJuridica" hidden>
+              <div class="contenedotLey">
+                <input id="checkbox3" type="checkbox" />
+
+                <p>
+                  Autorizo de manera previa, expresa e informada el tratamiento
+                  de mis datos personales de acuerdo con la
+                  <a id="botnLey" class="botnLey" onclick="MostratLey(3)"
+                    >política de tratamiento de datos personales.</a
+                  >
+                </p>
+              </div>
+              <div class="contenedotLey">
+                <input id="checkbox4" type="checkbox" />
+                <p>
+                  Autorizo libre y voluntariamente, de manera expresa e
+                  irrevocable,
+                  <a id="botnLey" class="botnLey" onclick="MostratLey(4)"
+                    >la consulta de mis datos financieros en cualquier tiempo y
+                    el reporte a centrales de riesgos.</a
+                  >
+                </p>
+              </div>
+            </div>
+            <input type="submit" name="submit" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

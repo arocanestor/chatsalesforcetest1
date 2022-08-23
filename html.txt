@@ -1,0 +1,101 @@
+.PopApp{
+      z-index: 3;
+      background: rgba(0,0,0,0.1);
+      height: 100vh;
+      width: 100vw;
+      position: absolute;      
+      display: flex;
+      align-items: center;
+      justify-content: center ;      
+      padding: 30px;
+    }
+    .botnLey{
+    cursor: pointer;
+    text-decoration: underline;
+    }
+    .cuadroDialogo{
+      width: 80%;
+      height: 80%;
+      background-color: white;
+      padding: 30px;
+      display: flex;
+      
+    }
+    .contenedotLey{
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    .contenedotLey > p{
+      margin: 15px ;
+    }
+  
+  <div class="PopApp" id="PopApp1" hidden>
+    <div class="cuadroDialogo">
+      <div>
+        <h1>titulo</h1> 
+      <p>
+        En virtud de lo previsto por la LEY 1581 DE 2012, el DECRETO 1377 DE 2013 y el DECRETO ÚNICO REGLAMENTARIO 1074 DE 2015 (según se encuentran vigentes, el “Régimen de Protección de Datos”), autorizo libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el registro mercantil con matrícula número 03180233, con Número de Identificación Tributaria - NIT 901.331.726-7, correo electrónico [<a href="/"><a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a></a> ], página web www.rentingtuio.com.co y número de teléfono +57 (601) 6253211 (en adelante "TUIO"), para que, en su calidad de responsable, realice el tratamiento de mis datos personales, en los términos que se señalan a continuación: (1) TUIO podrá recolectar, almacenar, usar, circular o suprimir mis datos personales, bajo los términos establecidos en la política de tratamiento de datos personales de TUIO (la “Política de Datos Personales”). Según se define en la Política de Datos Personales de TUIO, datos personales comprenden, individual o conjuntamente considerados, al nombre, nacionalidad, número de documento de identidad y fecha de expedición, domicilio, teléfono, correo electrónico, fecha y lugar de nacimiento, estado civil, género, tipo de vivienda, estrato, información de contacto, lugar de trabajo, referencias comerciales, personales y familiares, firma manuscrita, digital o electrónica, datos biométricos (considerados datos sensibles) o cualquier otra información que sea o llegue a ser considerada un dato personal; (2) otorgo mi consentimiento –previo, expreso e informado– para que TUIO realice el tratamiento de mis datos personales para las finalidades descritas en la Política de Datos Personales; (3) declaro con la firma de la presente autorización que he leído y entiendo la Política de Datos Personales, la cual podré consultar en cualquier momento a través del siguiente enlace www.rentingtuio.com.co; (4) TUIO me informó mis derechos a conocer, actualizar, corregir o eliminar mis datos personales, los cuales podré ejercer ante el oficial de protección de datos de TUIO mediante comunicación escrita que envíe al correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de Bogotá D.C; (5) TUIO me informó la facultad que me asiste de dar o no respuesta a preguntas que versen sobre datos sensibles o datos de niñas, niños y adolescentes; (6) entiendo que podré presentar quejas ante la Superintendencia de Industria y Comercio en el evento en el que mis consultas o reclamaciones no sean resueltas en los términos establecidos en la LEY 1581 DE 2012 o cuando considere que TUIO ha contravenido las disposiciones contenidas en el Régimen de Protección de Datos
+      </p>
+      <button onclick="OcultarLey(1)">Aceptar</button>
+      </div>
+             
+    </div>
+    
+  
+  </div>
+  <div class="PopApp" id="PopApp2" hidden>
+    <div class="cuadroDialogo">
+      <div>
+        <h1>titulo</h1> 
+      <p>
+        En virtud de lo previsto por la Ley 1266 de 2008, autorizo libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el registro mercantil con matrícula número 03180233, con Número de Identificación Tributaria - NIT 901.331.726-7, correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>], página web www.rentingtuio.com.co y número de teléfono +57 (601) 6253211 (en adelante "TUIO"),para que, en su calidad de fuente, usuario y responsable, realice el tratamiento de mis datos personales financieros, crediticios, comerciales, de servicios y, eventualmente, proveniente de terceros países (los “Datos Financieros”) en los términos que se señalan a continuación: (1) TUIO podrá recolectar, almacenar, usar, consultar, circular, reportar o suprimir mis Datos Financieros los cuales comprenden, individual o conjuntamente considerados mi nombre, nacionalidad, número de documento de identidad y fecha de expedición, comportamiento como deudor, capacidad de pago, cumplimiento de obligaciones financieras, puntaje crediticio, historial de crédito, información histórica y actual relativa a mi situación financiera y patrimonial o cualquier otra información que sea o llegue a ser considerada un Dato Financiero protegido por la Ley 1266 de 2008; (2) otorgo mi consentimiento –previo, expreso e informado– para que TUIO: (i) verifique mi identidad con miras al establecimiento y mantenimiento de relaciones contractuales y en operaciones financieras; (ii) consulte, en cualquier tiempo, con fines estadísticos, de control y/o supervisión, mis Datos Financieros en las centrales de riesgo o cualquier base de datos, para valorar cualquier riesgo de incumplimiento de las obligaciones financieras a mi cargo; (iii) analice riesgos financieros para el ofrecimiento de productos y servicios; (iv) verifique el cumplimiento o incumplimiento de obligaciones fiscales, parafiscales y aquellas relacionadas con el lavado de activos o financiación del terrorismo; (v) reporte ante las centrales de riesgo o cualquier base de datos, tanto el cumplimiento oportuno como el incumplimiento de mis obligaciones legales y contractuales, previa comunicación que se me deberá enviar como titular de la información; (vi) envíe mis Datos Financieros a las centrales de riesgo, a cualquier base de datos u operadores de la información para que estas puedan tratarla, analizarla, clasificarla y luego suministrarla a los usuarios de la información; (vii) realice, directamente o a través de terceros, actividades de cobranza; (viii) obtenga información sobre mis relaciones comerciales con otras entidades ya sean públicas o privadas; (ix) realice estudios de mercado o investigaciones comerciales o estadísticas; (x) adelante cualquier trámite ante una autoridad pública o privada, respecto de la cual el uso de mis Datos Financieros sea pertinente; (xi) conserve mis Datos Financieros para los fines aquí establecidos; (3) declaro con la firma de la presente autorización que he leído y entiendo la Política de Datos Personales, la cual podré consultar en cualquier momento a través del siguiente enlace <a href="http://www.rentingtuio.com.co"></a> www.rentingtuio.com.co; (4) TUIO me informó mis derechos a conocer, actualizar, corregir o eliminar mis datos personales, los cuales podré ejercer ante el oficial de protección de datos de TUIO mediante comunicación escrita que envíe al correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>]  o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de Bogotá D.C; (5) entiendo que podré presentar quejas ante la Superintendencia de Industria y Comercio o la Superintendencia Financiera en el evento en el que mis consultas o reclamaciones no sean resueltas en los términos establecidos en la Ley 1266 de 2008 o cuando considere que TUIO ha contravenido las disposiciones contenidas en la referida norma.
+      </p>
+      <button onclick="OcultarLey(2)">Aceptar</button>
+      </div>               
+    </div>
+  </div>
+  <div class="PopApp" id="PopApp3" hidden>
+    <div class="cuadroDialogo">
+      <div>
+        <h1>titulo</h1> 
+      <p>
+        En virtud de lo previsto por la Ley 1581 de 2012, el Decreto 1377 de 2013 y el Decreto Único Reglamentario 1074 de 2015 (según se encuentran vigentes, el “Régimen de Protección de Datos”), autorizo libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el registro mercantil con matrícula número 03180233, con Número de Identificación Tributaria - NIT 901.331.726-7, correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>], página web www.rentingtuio.com.co y número de teléfono +57 (601) 6253211 (en adelante "TUIO"), para que, en su calidad de responsable, realice el tratamiento de mis datos personales, en los términos que se señalan a continuación: (1) TUIO podrá recolectar, almacenar, usar, circular o suprimir mis datos personales, bajo los términos establecidos en la política de tratamiento de datos personales de TUIO (la “Política de Datos Personales”). Según se define en la Política de Datos Personales de TUIO, datos personales comprenden, individual o conjuntamente considerados, al nombre, nacionalidad, número de documento de identidad y fecha de expedición, domicilio, teléfono, correo electrónico, fecha y lugar de nacimiento, estado civil, género, tipo de vivienda, estrato, información de contacto, lugar de trabajo, referencias comerciales, personales y familiares, firma manuscrita, digital o electrónica, datos biométricos (considerados datos sensibles) o cualquier otra información que sea o llegue a ser considerada un dato personal; (2) otorgo mi consentimiento –previo, expreso e informado– para que TUIO realice el tratamiento de mis datos personales para las finalidades descritas en la Política de Datos Personales; (3) declaro con la firma de la presente autorización que he leído y entiendo la Política de Datos Personales, la cual podré consultar en cualquier momento a través del siguiente enlace www.rentingtuio.com.co; (4) TUIO me informó mis derechos a conocer, actualizar, corregir o eliminar mis datos personales, los cuales podré ejercer ante el oficial de protección de datos de TUIO mediante comunicación escrita que envíe al correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de Bogotá D.C; (5) TUIO me informó la facultad que me asiste de dar o no respuesta a preguntas que versen sobre datos sensibles o datos de niñas, niños y adolescentes; (6) entiendo que podré presentar quejas ante la Superintendencia de Industria y Comercio en el evento en el que mis consultas o reclamaciones no sean resueltas en los términos establecidos en la Ley 1581 de 2012 o cuando considere que TUIO ha contravenido las disposiciones contenidas en el Régimen de Protección de Datos.
+      </p>
+      <button onclick="OcultarLey(3)">Aceptar</button>
+      </div>               
+    </div>
+  </div>
+  <div class="PopApp" id="PopApp4" hidden>
+    <div class="cuadroDialogo">
+      <div>
+        <h1>titulo</h1> 
+      <p>
+        En virtud de lo previsto por la Ley 1266 de 2008, autorizo libre y voluntariamente a TUIO S.A.S., una sociedad colombiana, de naturaleza comercial, con domicilio en Bogotá D.C., inscrita en el registro mercantil con matrícula número 03180233, con Número de Identificación Tributaria - NIT 901.331.726-7, correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>], página web www.rentingtuio.com.co y número de teléfono +57 (601) 6253211 (en adelante "TUIO"),para que, en su calidad de fuente, usuario y responsable, realice el tratamiento de mis datos personales financieros, crediticios, comerciales, de servicios y, eventualmente, proveniente de terceros países (los “Datos Financieros”) en los términos que se señalan a continuación: (1) TUIO podrá recolectar, almacenar, usar, consultar, circular, reportar o suprimir mis Datos Financieros los cuales comprenden, individual o conjuntamente considerados mi nombre, nacionalidad, número de documento de identidad y fecha de expedición, comportamiento como deudor, capacidad de pago, cumplimiento de obligaciones financieras, puntaje crediticio, historial de crédito, información histórica y actual relativa a mi situación financiera y patrimonial o cualquier otra información que sea o llegue a ser considerada un Dato Financiero protegido por la Ley 1266 de 2008; (2) otorgo mi consentimiento –previo, expreso e informado– para que TUIO: (i) verifique mi identidad con miras al establecimiento y mantenimiento de relaciones contractuales y en operaciones financieras; (ii) consulte, en cualquier tiempo, con fines estadísticos, de control y/o supervisión, mis Datos Financieros en las centrales de riesgo o cualquier base de datos, para valorar cualquier riesgo de incumplimiento de las obligaciones financieras a mi cargo; (iii) analice riesgos financieros para el ofrecimiento de productos y servicios; (iv) verifique el cumplimiento o incumplimiento de obligaciones fiscales, parafiscales y aquellas relacionadas con el lavado de activos o financiación del terrorismo; (v) reporte ante las centrales de riesgo o cualquier base de datos, tanto el cumplimiento oportuno como el incumplimiento de mis obligaciones legales y contractuales, previa comunicación que se me deberá enviar como titular de la información; (vi) envíe mis Datos Financieros a las centrales de riesgo, a cualquier base de datos u operadores de la información para que estas puedan tratarla, analizarla, clasificarla y luego suministrarla a los usuarios de la información; (vii) realice, directamente o a través de terceros, actividades de cobranza; (viii) obtenga información sobre mis relaciones comerciales con otras entidades ya sean públicas o privadas; (ix) realice estudios de mercado o investigaciones comerciales o estadísticas; (x) adelante cualquier trámite ante una autoridad pública o privada, respecto de la cual el uso de mis Datos Financieros sea pertinente; (xi) conserve mis Datos Financieros para los fines aquí establecidos; (3) declaro con la firma de la presente autorización que he leído y entiendo la Política de Datos Personales, la cual podré consultar en cualquier momento a través del siguiente enlace www.rentingtuio.com.co; (4) TUIO me informó mis derechos a conocer, actualizar, corregir o eliminar mis datos personales, los cuales podré ejercer ante el oficial de protección de datos de TUIO mediante comunicación escrita que envíe al correo electrónico [<a class="ancla" href="mailto: protecciondedatos@rentingtuio.com">protecciondedatos@rentingtuio.com</a>] o que presente en la Carrera 4A # 67 – 87, Piso 3 de la ciudad de Bogotá D.C; (5) entiendo que podré presentar quejas ante la Superintendencia de Industria y Comercio o la Superintendencia Financiera en el evento en el que mis consultas o reclamaciones no sean resueltas en los términos establecidos en la Ley 1266 de 2008 o cuando considere que TUIO ha contravenido las disposiciones contenidas en la referida norma.
+      </p>
+      <button onclick="OcultarLey(4)">Aceptar</button>
+      </div>               
+    </div>
+  </div>
+/////////////////////////
+<div class="PersonaNatural">
+          <div class="contenedotLey">
+            <input id="checkbox1" type="checkbox"> <p>Autorizo de manera previa, expresa e informada el tratamiento de mis datos personales de acuerdo con la <a id="botnLey" class="botnLey" onclick="MostratLey(1)">política de tratamiento de datos personales.</a> </p>
+          
+          </div>
+          <div class="contenedotLey">
+            <input id="checkbox2" type="checkbox"><p>Autorizo libre y voluntariamente, de manera expresa e irrevocable, <a id="botnLey" class="botnLey" onclick="MostratLey(2)">la consulta de mis datos financieros en cualquier tiempo y el reporte a centrales de riesgos.</a></p>
+          </div>
+
+        </div>
+        <div>
+          <div class="contenedotLey"
+          >
+            <input id="checkbox3" type="checkbox">
+            
+            <p>Autorizo de manera previa, expresa e informada el tratamiento de mis datos personales de acuerdo con la <a id="botnLey" class="botnLey" onclick="MostratLey(3)">política de tratamiento de datos personales.</a> </p>
+          
+          </div>
+          <div class="contenedotLey">
+            <input id="checkbox4" type="checkbox"><p>Autorizo libre y voluntariamente, de manera expresa e irrevocable, <a id="botnLey" class="botnLey" onclick="MostratLey(4)">la consulta de mis datos financieros en cualquier tiempo y el reporte a centrales de riesgos.</a></p>
+          </div>
+        </div> 

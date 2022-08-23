@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.                                        -->
+<!--  ----------------------------------------------------------------------  -->
+<head>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+     <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      
+      
+    datables CSS básico
+    <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css"/>
+    datables estilo bootstrap 4 CSS
+    <link rel="stylesheet"  type="text/css" href="assets/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">    -->
+
+    <script src="bootstrap5/js/bootstrap.bundle.min.js"></script>  
+
+    <style type="text/css">
+
+      body{
+        color: #858585;
+      }
+      .form-group{margin-bottom: 0.5rem;}
+      .btn-primary{
+        background-color: #7BC142;
+        border-color: #7BC142;
+        border-radius: 23px;
+        padding: 5px 20px;
+        }
+
+      .btn-primary:hover, .btn-primary:active, .btn-primary:focus{
+        background-color: #7BC142;
+        border-color: #7BC142;        
+      }
+      label, option, select, input, textarea{  
+        font-family: 'latoregular';
+        font-size: 14px;
+        color: #858585;
+        line-height: 16px;
+        
+      }
+
+      select{
+        background-image: url("bootstrap5/Imagen/abajo.png");
+        background-repeat: no-repeat;
+        background-position: right calc(.375em + .1875rem) center;
+        background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+      }
+
+      .col-sm-6{
+        margin:  0 auto;
+      }
+
+      a{
+        text-decoration: none;
+        color: #858585;
+      }
+      a:hover{
+        text-decoration: none;
+        color: #858585;
+      }
+      @media only screen and (max-width: 600px) {
+          .btn-primary{
+            margin-left: 40%;
+          }
+      }
+
+      #thank-you-message {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+    </style>
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+<script async src="bootstrap5/js/validate.js">
+
+</script>
+<script>
+
+
+var firstObject = {TC00X:"Académico", TC01X:"Financiación y Apoyos Económicos", TC02X:"Inscripción y Admisión", TC03X:" Certificaciones de notas y constancias de estudio para egresados", TC05X:"Novedades asociadas a Aulas y Casilleros", TC06X:"Acompañamiento para el desarrollo de tu vida universitaria", TC07X:"Certificaciones Laborales", TC08X:"Solicitudes a otras áreas de la Universidad", TC09X:"Tecnológico", TC10X:"Solicitudes para Educación Continuada"}
+var secondObject = {S001:"Facultad de Medicina", S002:"Facultad de Enfermería", S003:"Facultad de Ingeniería", S004:"Facultad de Ciencias económicas y administrativas", S005:"Facultad Ciencias Jurídicas y Políticas", S006:"Facultad de Educación", S007:" Facultad de Psicología", S008:"Facultad de Ciencias", S009:"Facultad de Odontología", S010:"Facultad de Creación y Comunicación ", S011:"Departamento de Humanidades", S012:"Departamento de Bioética ", S013:"Preuniversitario", S014:"Centro de Lenguas", S015:"Pregrado-Financiación y Apoyos", S016:"Posgrado-Financiación y Apoyos", S017:"Solicitar Certificado", S018:"Verificar Certificado", S019:"Otras áreas", S020:"Cursos", S021:"Diplomados", S022:"Seminarios", S023:"Congresos", S024:"Otros", S025:"Pregrado-Inscripción y Admisión", S026:"Posgrado-Inscripción y Admisión", S027:"Pregrado-Certificaciones", S028:"Posgrado-Certificaciones", S029:"Pregrado-Aulas y Casilleros", S030:"Posgrado-Aulas y Casilleros", S031:"Pregrado-Acompañamiento vida universitaria", S032:"Posgrado-Acompañamiento vida universitaria", S033:"Pregrado-Tecnológico", S034:"Posgrado-Tecnológico", S035:"Radicación Oficina Jurídica"}
+var subjectObject = {
+  [firstObject.TC00X]: {
+    [secondObject.S001]: [{"10":"Medicina"}, {"380":"Instrumentación Quirúrgica"}, {"375":"Optometría"}, {"360":"Especialización En Anestesia Cardiovascular Y Torácica"}, {"907":"Especialización En Anestesiología"}, {"44":"Especialización En Cardiología"}, {"51":"Especialización En Cardiología Pediátrica"}, {"65":"Especialización En Cirugía De Mano"}, {"55":"Especialización En Cirugía Del Tórax"}, {"41":"Especialización En Cirugía General"}, {"58":"Especialización En Cirugía Plástica, Reconstructiva Y Estética"}, {"187":"Especialización En Cirugía Vascular Y Angiología"}, {"56":"Especialización En Dermatología"}, {"299":"Especialización En Gastroenterología Pediátrica"}, {"42":"Especialización En Ginecología Y Obstetricia"}, {"689":"Especialización En Infectologia Pediátrica"}, {"1318":"Especialización En Medicina Critica Y Cuidado Intensivo"}, {"297":"Especialización En Medicina Critica Y Cuidado Intensivo Pediátrico"}, {"49":"Especialización En Medicina Del Deporte"}, {"301":"Especialización En Medicina Del Dolor Y Cuidados Paliativos"}, {"33":"Especialización En Medicina Familiar"}, {"50":"Especialización En Medicina Física Y Rehabilitación"}, {"52":"Especialización En Medicina Interna"}, {"1313":"Especialización En Medicina Materno Fetal"}, {"38":"Especialización En Nefrología Pediátrica"}, {"63":"Especialización En Neonatología"}, {"34":"Especialización En Neumología"}, {"35":"Especialización En Neumología Pediátrica"}, {"59":"Especialización En Neurocirugía"}, {"53":"Especialización En Neurología"}, {"43":"Especialización En Oftalmología"}, {"45":"Especialización En Oncología Clínica"}, {"46":"Especialización En Ortopedia Y Traumatología"}, {"47":"Especialización En Pediatría"}, {"40":"Especialización En Psiquiatría"}, {"73":"Especialización En Psiquiatría De Enlace E Interconsultas"}, {"67":"Especialización En Psiquiatría Infantil Y Del Adolescente"}, {"54":"Especialización En Radiología E Imágenes Diagnosticas"}, {"474":"Especialización En Reumatología Pediátrica"}, {"64":"Especialización En Urología"}, {"72":"Especialización En Ergonomía"}, {"29":"Especialización En Gerencia De La Calidad En Salud"}, {"25":"Especialización En Higiene Industrial"}, {"31":"Especialización En Salud Familiar Y Comunitaria"}, {"1601":"Especialización En Seguridad y Salud En El Trabajo"}, {"1548":"Maestria En Administracion En Salud"}, {"609":"Maestría En Epidemiologia"}, {"1329":"Maestría En Informática Biomédica"}, {"581":"Maestría En Salud Pública"}, {"1172":"Doctorado en Salud Publica"}],
+    [secondObject.S002]: [{"8":"Enfermería"}, {"1198":"Especialización En Enfermería Neonatal"}, {"1088":"Especialización En Seguridad del Paciente"}, {"1365":"Especialización En Seguridad del Paciente Virtual"}, {"751":"Maestría En Salud Mental Comunitaria"}, {"404":"Maestría En Sexual y Reproductiva"}, {"1123":"Maestría En Enfermería en Cuidados Paliativos"}],
+    [secondObject.S003]: [{"564":"Bioingeniería"}, {"123":"Ing. Sistemas Diurna"}, {"118":"Ing. Electrónica"}, {"125":"Ingeniería Ambiental"}, {"126":"Ingeniería Industrial"}, {"77":"Especialización En Gerencia De Producción Y Productividad"}, {"71":"Especialización En Gerencia De Proyectos"}, {"562":"Especialización En Seguridad De Redes Telemáticas"}, {"759":"Maestría En Gestión Empresarial y Ambiental"}, {"1628":"Maestría En Salud Ambiental"}, {"1711":"Maestría Gerencia Organizacional de Proyectos"}],
+    [secondObject.S004]: [{"5":"Administración De Empresas"}, {"748":"Negocios Internacionales"}, {"1186":"Contaduría Virtual Modalidad - Virtual"}, {"1668":"Finanzas - Virtual"}, {"1681":"Marketing y Transformación Digital - Virtual"}, {"754":"Especialización En Gerencia En Marketing Farmacéutico"}],
+    [secondObject.S005]: [{"735":"Ciencia Política"}, {"595":"Derecho"}],
+    [secondObject.S006]: [{"113":"Lic. Educación Infantil"}, {"1112":"Lic. Bilinguismo con Énfasis En Inglés"}, {"78":"Especialización En Docencia Universitaria"}, {"1622":"Maestría En Educación"}, {"1623":"Maestría En Educación Inclusiva e Intercultural"}],
+    [secondObject.S007]: [{"133":"Psicología"}, {"736":"Especialización En Investigación de Mercados y del Consumo"}, {"451":"Especialización En Psicología Clínica Y Autoeficacia Personal"}, {"450":"Especialización En Psicología Clínica Y Desarrollo Infantil"}, {"60":"Especialización En Psicología Del Deporte Y El Ejercicio"}, {"69":"Especialización En Psicología Medica Y De La Salud"}, {"1492":"Especializacion En Psicologia Organizacional Y De La Seguridad Y Salud En El Trabajo"}, {"405":"Especialización En Psicología Social, Cooperación y Gestión Comunitaria"}, {"452":"Maestría en Psicología"}],
+    [secondObject.S008]: [{"122":"Biología"}, {"1257":"Química Farmacéutica"}, {"790":"Matemáticas"}, {"857":"Estadística"}, {"260":"Maestría En Ciencias Básicas Biomédicas"}, {"750":"Doctorado en Ciencias Biomédicas"}, {"1697":"Maestría Gobernanza en áreas protegidas y gestión del recurso biológico"}],
+    [secondObject.S009]: [{"11":"Odontología"}, {"15":"Especialización En Cirugía Oral Y Maxilofacial"}, {"21":"Especialización En Endodoncia"}, {"19":"Especialización En Odontología Pediátrica"}, {"333":"Especialización En Operatoria Dental Estética Y Materiales Dentales"}, {"17":"Especialización En Ortodoncia"}, {"18":"Especialización En Patología Oral Y Medios Diagnósticos"}, {"16":"Especialización En Periodoncia Y Medicina Oral"}, {"20":"Especialización En Prostodoncia"}, {"687":"Maestría en Ciencias Odontológicas"}],
+    [secondObject.S010]: [{"1266":"Arquitectura"}, {"500":"Arte Dramático"}, {"132":"Artes Plásticas"}, {"788":"Diseño de Comunicación"}, {"129":"Diseño Industrial"}, {"130":"Formación Musical"}, {"1107":"Maestría en Diseño para Industrias Creativas y Culturales"}, {"1148":"Maestría en Músicas Colombianas"}],
+    [secondObject.S011]: [{"427":"Filosofía"}, {"1512":"Intérprete de la Lengua de Señas Colombiana- Virtual"}, {"1397":"Maestría en Filosofía de la Ciencia"}, {"1149":"Maestría en Estudios Sociales y Culturales"}],
+    [secondObject.S012]: [{"26":"Especialización En Bioética"}, {"1098":"Especialización En Bioética a Distancia"}, {"70":"Maestría En Bioética"}, {"206":"Doctorado en Bioética"}],
+    [secondObject.S013]: [{"13":"Curso Premédico"}, {"191":"Pre-Icfes"}],
+    [secondObject.S014]: [{"D080":"Cursos de lenguas"}],
+  },
+  [firstObject.TC01X]:{
+    [secondObject.S015]:[{"D001":"Reembolso"}, {"D002":"Descuento"}, {"D003":"Saldo en mora"}, {"D004":"Financiación"}, {"D005":"Estado de cuenta"}, {"D006":"Ajuste en cuenta"}, {"D007":" Cobro matrícula extemporánea"}, {"D008":"Novedades Icetex"}, {"D009":"Legalización"}, {"D010":"Certificados Valor Pago, Deuda y Tributarios"}, {"D011":"Paz y salvo"}, {"D012":"Apoyos Económicos"}, {"D013":"Aliados Estratégicos"}],
+    [secondObject.S016]:[{"D001":"Reembolso"}, {"D002":"Descuento"}, {"D003":"Saldo en mora"}, {"D004":"Financiación"}, {"D005":"Estado de cuenta"}, {"D006":"Ajuste en cuenta"}, {"D007":" Cobro matrícula extemporánea"}, {"D008":"Novedades Icetex"}, {"D009":"Legalización"}, {"D010":"Certificados Valor Pago, Deuda y Tributarios"}, {"D011":"Paz y salvo"}, {"D012":"Apoyos Económicos"}, {"D013":"Aliados Estratégicos"}],
+  },
+  [firstObject.TC02X]:{
+    [secondObject.S025]:[{"D014":"Información de un programa"}, {"D015":"Diligenciamiento del Formulario"}, {"D016":" Agendamiento de Entrevista"}, {"D017":" Órden de pago de matrícula (estudiante nuevo)"}, {"D018":"Información de Transferencias / Homologación"}, {"D019":"Información de Movilidad Internacional"}],
+    [secondObject.S026]:[{"D014":"Información de un programa"}, {"D015":"Diligenciamiento del Formulario"}, {"D016":" Agendamiento de Entrevista"}, {"D017":" Órden de pago de matrícula (estudiante nuevo)"}, {"D018":"Información de Transferencias / Homologación"}, {"D019":"Información de Movilidad Internacional"}],
+  },
+  [firstObject.TC03X]:{
+    [secondObject.S027]:[{"D020":"Diplomas y Actas de grado"}, {"D021":"Autenticidad de titulo"}, {"D022":"Notas"}, {"D023":"Puesto ocupado"}, {"D025":"Escala"}, {"D026":"Promedio"}, {"D027":"Colegio"}],
+    [secondObject.S028]:[{"D020":"Diplomas y Actas de grado"}, {"D021":"Autenticidad de titulo"}, {"D022":"Notas"}, {"D023":"Puesto ocupado"}, {"D024":"Acceso posgrado"}, {"D025":"Escala"}, {"D026":"Promedio"}, {"D027":"Colegio"}],
+  },
+  [firstObject.TC05X]:{
+    [secondObject.S029]:[{"D031":"Solicitud Aulas Físicas"}, {"D032":"Préstamo de Casilleros"}, {"D033":"Deudas por casilleros"}],
+    [secondObject.S030]:[{"D031":"Solicitud Aulas Físicas"}, {"D032":"Préstamo de Casilleros"}, {"D033":"Deudas por casilleros"}],},
+  [firstObject.TC06X]:{
+    [secondObject.S031]:[{"D034":"Acompañamiento estudiantil integral"}, {"D035":"Tutorias entre Pares"}, {"D036":"Oferta de talleres"}, {"D037":"Oferta de cursos"}, {"D038":"Servicio de psicopedagogía"}],
+    [secondObject.S032]:[{"D034":"Acompañamiento estudiantil integral"}, {"D035":"Tutorias entre Pares"}, {"D036":"Oferta de talleres"}, {"D037":"Oferta de cursos"}, {"D038":"Servicio de psicopedagogía"}],
+  },
+  [firstObject.TC07X]:{
+    [secondObject.S017]:[{"D039":"Generación Certificados"}],
+    [secondObject.S018]:[{"D040":"Verificación Certificados"}],
+  },
+  [firstObject.TC08X]:{
+    [secondObject.S019]:[{"D041":"Rectoría"}, {"D042":"Vicerrectoría Administrativa"}, {"D043":"Vicerrectoría Académica"}, {"D044":"Vicerrectoría de Investigaciones"}, {"D045":"División de Calidad"}, {"D046":"Contabilidad y presupuesto"}, {"D047":"Comunicaciones y Centro de diseño"}, {"D048":"Egresados"}, {"D049":"Correspondencia"}, {"D050":"Compras"}, {"D051":"Almacén e inventarios"}, {"D052":"Seguridad"}, {"D053":"Servicios Generales y Desarrollo Físico"}, {"D054":"Gestión Ambiental"}, {"D055":"Biblioteca"}, {"D056":"Clínicas odontologicas"}, {"D057":"Consultorio de Optometría"}, {"D058":"Consultorio Jurídico"}, {"D059":"Consultorio de Psicología"}, {"D060":"Bienestar Universitario"}, {"D061":"HUB iEX"}],
+  },
+  [firstObject.TC09X]:{
+    [secondObject.S033]:[{"D062":"Aulas virtuales"}, {"D063":"Capacitaciones comunidad UEB"}, {"D064":"Correo Institucional"}, {"D065":"Usuario Sistema Académico"}, {"D066":"Visualización Pago Electrónico"}, {"D067":"Préstamo de Equipos"}, {"D068":"Carnetización"}],
+    [secondObject.S034]:[{"D062":"Aulas virtuales"}, {"D063":"Capacitaciones comunidad UEB"}, {"D064":"Correo Institucional"}, {"D065":"Usuario Sistema Académico"}, {"D066":"Visualización Pago Electrónico"}, {"D067":"Préstamo de Equipos"}, {"D068":"Carnetización"}],
+  },
+  [firstObject.TC10X]:{
+    [secondObject.S020]:[{"D069":"Ajustes a certificados"}, {"D070":"Validación de autenticidad de certificados de EC"}, {"D071":"Homologación de programa de EC a programa regular de pre y/o posgrado"}, {"D072":"Generación constancias para directores, coordinadores y/o conferencistas"}, {"D073":"Generación constancias para participantes"}, {"D074":"Duplicados de certificaciones de EC"}, {"D075":"Ajustes a datos de participante en sistema académico"}, {"D076":"Generación de certificado para apostillar"}, {"D077":"Cartas de presentación a extranjeros"}, {"D078":"Asuntos Financieros"}, {"D079":"Información de programas Educación Continuada"}],
+    [secondObject.S021]:[{"D069":"Ajustes a certificados"}, {"D070":"Validación de autenticidad de certificados de EC"}, {"D071":"Homologación de programa de EC a programa regular de pre y/o posgrado"}, {"D072":"Generación constancias para directores, coordinadores y/o conferencistas"}, {"D073":"Generación constancias para participantes"}, {"D074":"Duplicados de certificaciones de EC"}, {"D075":"Ajustes a datos de participante en sistema académico"}, {"D076":"Generación de certificado para apostillar"}, {"D077":"Cartas de presentación a extranjeros"}, {"D078":"Asuntos Financieros"}, {"D079":"Información de programas Educación Continuada"}],
+    [secondObject.S022]:[{"D069":"Ajustes a certificados"}, {"D070":"Validación de autenticidad de certificados de EC"}, {"D071":"Homologación de programa de EC a programa regular de pre y/o posgrado"}, {"D072":"Generación constancias para directores, coordinadores y/o conferencistas"}, {"D073":"Generación constancias para participantes"}, {"D074":"Duplicados de certificaciones de EC"}, {"D075":"Ajustes a datos de participante en sistema académico"}, {"D076":"Generación de certificado para apostillar"}, {"D077":"Cartas de presentación a extranjeros"}, {"D078":"Asuntos Financieros"}, {"D079":"Información de programas Educación Continuada"}],
+    [secondObject.S023]:[{"D069":"Ajustes a certificados"}, {"D070":"Validación de autenticidad de certificados de EC"}, {"D071":"Homologación de programa de EC a programa regular de pre y/o posgrado"}, {"D072":"Generación constancias para directores, coordinadores y/o conferencistas"}, {"D073":"Generación constancias para participantes"}, {"D074":"Duplicados de certificaciones de EC"}, {"D075":"Ajustes a datos de participante en sistema académico"}, {"D076":"Generación de certificado para apostillar"}, {"D077":"Cartas de presentación a extranjeros"}, {"D078":"Asuntos Financieros"}, {"D079":"Información de programas Educación Continuada"}],
+    [secondObject.S024]:[{"D069":"Ajustes a certificados"}, {"D070":"Validación de autenticidad de certificados de EC"}, {"D071":"Homologación de programa de EC a programa regular de pre y/o posgrado"}, {"D072":"Generación constancias para directores, coordinadores y/o conferencistas"}, {"D073":"Generación constancias para participantes"}, {"D074":"Duplicados de certificaciones de EC"}, {"D075":"Ajustes a datos de participante en sistema académico"}, {"D076":"Generación de certificado para apostillar"}, {"D077":"Cartas de presentación a extranjeros"}, {"D078":"Asuntos Financieros"}, {"D079":"Información de programas Educación Continuada"}],
+  },
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("reason");
+  var topicSel = document.getElementById("00N5f0000068UwS");
+  var chapterSel = document.getElementById("00N5f0000068V4n");
+  x=Object.values(firstObject);
+  y=Object.keys(firstObject);
+  for (var i = 0; i < Object.keys(subjectObject).length; i++) {
+    subjectSel.options[subjectSel.options.length] = new Option(x[i], y[i]);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var j in  subjectObject[firstObject[this.value]]) {
+      topicKey = getKeyByValue(secondObject,j);
+     // console.log(topicKey);
+      topicSel.options[topicSel.options.length] = new Option(j, topicKey);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[firstObject[subjectSel.value]][secondObject[this.value]];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(Object.values(z[i]), Object.keys(z[i]));
+    }
+  }
+  function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+  }
+}
+
+function mensaje_enviado(){
+  var correo= document.getElementById("email").value;
+  var usuario= document.getElementById("00N5f0000068wNj").value;
+  var asunto= document.getElementById("subject").value;
+  var tipo= document.getElementById("type").value;
+  var razon= document.getElementById("reason").value;
+  var submotivo= document.getElementById("00N5f0000068UwS").value;
+  var descripcion= document.getElementById("00N5f0000068V4n").value;
+  var comentario= document.getElementById("description").value;
+  var habeas= document.getElementById("00N5f00000dGdf5").checked;
+
+  if (correo !="" && usuario !="" && asunto !="" && tipo !="" && razon !="" && submotivo !="" && descripcion !="" && comentario !="" && habeas ==true){
+    var mensaje= document.getElementById("thank-you-message");
+    setTimeout(mensaje.style.display="block", 2000);
+  }
+
+}
+
+</script>
+</head>   
+<body>
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+<div class="container" style="margin-bottom:20px;">
+<form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST" class="needs-validation" novalidate onsubmit="return mensaje_enviado()">
+
+<input type=hidden name="orgid" value="00D5f000001yTS9">
+<input type=hidden name="retURL" value="https://www.unbosque.edu.co/pqrs">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+<!--  these lines if you wish to test in debug mode.                          -->
+<!--  <input type="hidden" name="debug" value=1>                              -->
+<!--  <input type="hidden" name="debugEmail" value="vcastro@nectia.com">      -->
+<!--  ----------------------------------------------------------------------  -->
+  <div class="col-sm-6">
+    <br>
+    <h6>¡Hola! 
+Bienvenido al sistema de felicitaciones, sugerencias, ideas, reclamos, peticiones y oportunidades de mejora de nuestra Universidad El Bosque.
+Para iniciar con el trámite debes diligenciar el siguiente formulario, nuestro sistema te guiará para realizar, procesar y hacerle seguimiento a tu solicitud.
+¡Tu opinión cuenta, El Bosque te escucha!</h6><br>
+  </div>
+<div class="form-group ">
+  <div class="col-sm-6">
+   <!--  <label for="name">Nombre del contacto</label>-->
+    <input class="form-control" id="name" maxlength="80" name="name" size="20" type="text" placeholder="Nombre" pattern="[A-Za-z\s]{1,80}"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+  <!--   <label for="email">Correo electrónico</label>-->
+    <input class="form-control" id="email" maxlength="80" name="email" size="20" type="text" placeholder="Correo electrónico *" required  />
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+  <!--   <label for="phone">Teléfono</label>-->
+    <input class="form-control" id="phone" maxlength="40" name="phone" size="20" type="text" placeholder="Celular" pattern="[0-9]+" />
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+    <select class="form-control" id="00N5f0000068wNj" name="00N5f0000068wNj" title="Usuario del caso *" required="">
+      <option value="">¿Quién eres? *</option><option value="Administrativo">Administrativo</option>
+      <option value="Estudiante">Estudiante</option>
+      <option value="Interesado">Interesado</option>
+      <option value="Inscrito">Inscrito</option>
+      <option value="Proveedor">Proveedor</option>
+      <option value="Egresado">Egresado</option>
+      <option value="Padre de familia y/o acudiente">Padre de familia y/o acudiente</option>
+      <option value="Cliente corporativo">Cliente corporativo</option>
+      <option value="Entidad Gubernamental">Entidad Gubernamental</option>
+      <option value="Docente">Docente</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+  <!--   <label for="subject">Asunto</label>-->
+    <input class="form-control" id="subject" maxlength="80" name="subject" size="20" type="text" placeholder="Asunto *" required />
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+  <!--  <label for="type">Tipo</label>-->
+    <select class="form-control" id="type" name="type" required="">
+      <option value="">¿Tu solicitud es? *</option>
+      <option value="Queja">Queja</option>
+      <option value="Reclamo">Reclamo</option>
+      <option value="Sugerencia">Sugerencia</option>
+      <option value="Petición">Petición</option>
+      <option value="Felicitación">Felicitación</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+ <!--   <label for="reason">Motivo del caso</label>-->
+    <select class="form-control" id="reason" name="reason" required="">
+      <option value="">Tema de tu solicitud *</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+      <select class="form-control" id="00N5f0000068UwS" name="00N5f0000068UwS" title="Submotivo del caso" required="">
+      <option value="">Elige categoría *</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+   <select class="form-control" id="00N5f0000068V4n" name="00N5f0000068V4n" title="Descripción del caso" required="">
+      <option value="">Selecciona la subcategoría *</option>
+  </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-6">
+    <!-- <label for="description">Descripción</label>-->
+    <textarea class="form-control" id="description" name="description" placeholder="Detalla tu solicitud *" required="" ></textarea>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-6" style="text-align:center;">
+<input class="form-check-input" id="00N5f00000dGdf5" name="00N5f00000dGdf5" type="checkbox" value="1" required/>
+Autorizo a la Universidad El Bosque para el envío de información *<br>
+<a href="https://www.unbosque.edu.co/sites/default/files/2021-01/Autorizacion-Tratamiento-de-Datos-Personales-Web.pdf">
+Términos y condiciones</a>
+  </div>
+</div>
+ <p id="thank-you-message">
+   Se ha enviado una PQRS a la Universidad El Bosque.
+ </p>
+<div class="col-sm-6 text-center">
+<input class="btn btn-primary" type="submit" name="submit">
+</div>
+</form>
+</div>
+</body>
+</html>
