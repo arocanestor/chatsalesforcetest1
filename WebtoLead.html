@@ -111,6 +111,23 @@
 
     <script async src="bootstrap5/js/validate.js"></script>
     <script type="text/javascript">
+      window.addEventListener('load', (event) => {
+        let sub = document.getElementsByName("submit")
+        console.log(sub)
+        sub[0].addEventListener("click", (even) => { 
+          let bot1 = document.getElementById("00N74000000MnF4").checked;
+          let bot2 = document.getElementById("00N74000000MnFE").checked;
+          let bot3 = document.getElementById("00N74000000MnF9").checked;
+          if(bot1 && bot2 && bot3){
+            alert('Gracias por diligenciar el formulario')
+            return
+          }
+          alert('Faltan compos')
+          even.preventDefault();
+      }, false);
+      });
+      
+
       function showContent(o) {
         divCompany = document.getElementById("compania");
         divNit = document.getElementById("Nit");
@@ -1375,7 +1392,7 @@
                 </p>
               </div>
             </div>
-            <input type="submit" name="submit" />
+            <input  type="submit" name="submit" />
           </div>
         </div>
       </form>
