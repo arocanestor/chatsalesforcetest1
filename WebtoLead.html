@@ -207,7 +207,7 @@
       function OcultarLey(npopap) {
         document.getElementById(`PopApp${npopap}`).hidden = true;
 
-        document.getElementById(`checkbox${npopap}`).checked = true;
+        document.querySelector(`.checkbox${npopap}`).checked = true;
       }
     </script>
   </head>
@@ -1016,11 +1016,11 @@
           </div>
         </div>
 
-        <div class="form-group view-marca " id="KIA" hidden>
-          <div class=" col-sm-6">
+        <div class="form-group view-marca" id="KIA" hidden>
+          <div class="col-sm-6">
             <label>Modelo</label><br />
-            <div class="container ">
-              <div class="row ">
+            <div class="container">
+              <div class="row">
                 <div class="col">
                   <input
                     class="conformarPM"
@@ -1141,10 +1141,8 @@
                     value="SC2M21__25G1402"
                     onclick="conformarPM(this)"
                   />KIA RIO HATCHBACK (SC) EMOTION MT<br />
-                  
                 </div>
                 <div class="col">
-                  
                   <input
                     class="conformarPM"
                     type="checkbox"
@@ -1274,30 +1272,82 @@
           <div class="col-sm-6">
             <div class="PersonaNatural" hidden>
               <div class="contenedotLey">
-                <input id="checkbox1" type="checkbox" />
+                <input
+                  id="00N74000000MnF4"
+                  type="checkbox"
+                  required="true"
+                  name="00N74000000MnF4"
+                  value="1"
+                />
+
+                <p>
+                  La persona que firma cuenta con 18 años, mayoría de edad
+                  establecida en el territorio nacional de Colombia.
+                </p>
+              </div>
+              <div class="contenedotLey">
+                <input
+                  id="00N74000000MnFE"
+                  name="00N74000000MnFE"
+                  value="1"
+                  type="checkbox"
+                  class="checkbox1"
+                />
+
                 <p>
                   Autorizo de manera previa, expresa e informada el tratamiento
                   de mis datos personales de acuerdo con la
+
                   <a id="botnLey" class="botnLey" onclick="MostratLey(1)"
                     >política de tratamiento de datos personales.</a
                   >
                 </p>
               </div>
+
               <div class="contenedotLey">
-                <input id="checkbox2" type="checkbox" />
+                <input
+                  id="00N74000000MnF9"
+                  name="00N74000000MnF9"
+                  value="1"
+                  type="checkbox"
+                  class="checkbox2"
+                />
+
                 <p>
                   Autorizo libre y voluntariamente, de manera expresa e
                   irrevocable,
+
                   <a id="botnLey" class="botnLey" onclick="MostratLey(2)"
                     >la consulta de mis datos financieros en cualquier tiempo y
                     el reporte a centrales de riesgos.</a
                   >
                 </p>
-              </div>
+              </div>              
             </div>
             <div class="PersonaJuridica" hidden>
               <div class="contenedotLey">
-                <input id="checkbox3" type="checkbox" />
+                <input
+                  id="00N74000000MnF4"
+                  type="checkbox"
+                  required="true"
+                  name="00N74000000MnF4"
+                  value="1"
+                 
+                />
+
+                <p>
+                  La persona que firma cuenta con 18 años, mayoría de edad
+                  establecida en el territorio nacional de Colombia.
+                </p>
+              </div>
+              <div class="contenedotLey">
+                <input
+                  id="00N74000000MnFE"
+                  name="00N74000000MnFE"
+                  value="1"
+                  type="checkbox"
+                  class="checkbox3"
+                />
 
                 <p>
                   Autorizo de manera previa, expresa e informada el tratamiento
@@ -1308,7 +1358,13 @@
                 </p>
               </div>
               <div class="contenedotLey">
-                <input id="checkbox4" type="checkbox" />
+                <input
+                  id="00N74000000MnF9"
+                  name="00N74000000MnF9"
+                  value="1"
+                  type="checkbox"
+                  class="checkbox4"
+                />              
                 <p>
                   Autorizo libre y voluntariamente, de manera expresa e
                   irrevocable,
