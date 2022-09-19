@@ -169,13 +169,11 @@
       </div>
     </section>
     <div class="contentForm">
-      <form
-        action="https://universidaddelacosta--seidordev.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
-        method="POST"
-        class="styleForm"
-      >
-        <input type="hidden" name="orgid" value="00D3C00000053Vq" />
-        <input type="hidden" name="retURL" value="http://google.com" />
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST" class="styleForm">
+    
+        <input type=hidden name="orgid" value="00Df4000002ZjRP">
+        <input type=hidden name="retURL" value="https://www.cuc.edu.co/">
+      
         
         <section class="sectionForm sec1" id="sec1">
           <h2>INFORMACIÓN PERSONAL</h2>
@@ -716,15 +714,25 @@
               maxlength="80"
             >
               <option value=""disabled selected hidden></option>
-              <option value="Padre">PADRE/MADRE</option>
-              <option value="Hermano">HERMANO</option>
-              <option value="Primo">PRIMO</option>
-              <option value="Tio">TIO</option>
-              <option value="Abuelo">ABUELO</option>
-              <option value="Amigo">AMIGO</option>
+              <option value="PADRE/MADRE">PADRE/MADRE</option>
+              <option value="HERMANO/A">HERMANO/A</option>
+              <option value="PRIMO/A">PRIMO/A</option>
+              <option value="TIO/A">TIO/A</option>
+              <option value="ABUELO/A">ABUELO/A</option>
+              <option value="AMIGO/A">AMIGO/A</option>
               <option value="Pareja	">PAREJA</option>
-              
+              <option value="Otras">OTROS</option>
             </select>
+          </div>
+          <div class="input ">
+            <input
+              onchange="getField(this)"
+              id="PARENTESCO_ACUDIENTEF"
+              maxlength="80"
+              name="PARENTESCO_ACUDIENTE"
+              type="text"
+              hidden
+            />
           </div>
         </section>
         <section class="sectionForm sec3" id="sec3" hidden>
@@ -1079,14 +1087,7 @@
         </section>
 
         <!--form_json:-->
-        <textarea
-          id="00N3C000006CwdE"
-          name="00N3C000006CwdE"
-          rows="3"
-          type="text"
-          wrap="soft"
-          hidden
-        ></textarea>
+        <textarea  id="00N5G00000VwPla" name="00N5G00000VwPla" rows="3" type="text" wrap="soft" hidden></textarea>
         <!--Web-to-contact:-->
         <input
           id="00N3C000006Cwcz"
@@ -1117,8 +1118,7 @@
       </form>
     </div>
     <script>
-    let dataForm = {"ley":"No","email":"","TRABAJA":"","emailForm": ""}; 
- 
+    let dataForm = {"ley":"No","email":"","TRABAJA":"","emailForm": ""};   
  
 
   
@@ -1148,8 +1148,9 @@
       /// Agregar valor de los campos en el mapa dataForm
       function getField(even) {        
         dataForm[even.name] = even.value;
+        
         document.getElementById("00N3C000006Cwcz").click();
-        document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
+        document.getElementById("00N5G00000VwPla").value = JSON.stringify(dataForm);
         contadorbotones();
         /// Habilita el campo de documento para recibir letras cuando es seleccionado documento
           //Verirficacion de tipo de documento Pa es igual a Pasaporte
@@ -1163,16 +1164,14 @@
           camposDependientes(even);
         }
         
-        console.log(dataForm);
-        console.log(field);
-        console.log(37  + nDependientes)
+        
       }
       ///Habilita un nuevo campo si es elegida la opcion otros en el campo 10/12/37
       function habilitarCamposTipoOtro(eve){
-        let dep = ["Atlantico","Bolivar","Magdalena","La Guajira","Cesar","Cordoba","Sucre","Otras","Cajacopi Eps","Sanitas Eps","Compensar Eps","Coomeva Eps","Coosalud","Sura Eps","Famisanar","Medimas Eps","Nueva Eps","Salud Total Eps","Cafam Eps","Emssanar Eps","Colsubsidio Eps","Asmet salud Eps","Asocación mutual barrios","Capresoca Eps","Ecoopsos Eps SAS","Fuerzas militares","Policia Naciona","Ecopetrol","Magisterio","Servicio Occidental de salud","Cruz Blanca Eps","Ninguna","Aliansalud","Mutual ser"];
+        let dep = ["PADRE/MADRE","HERMANO/A","PRIMO/A","TIO/A","ABUELO/A","AMIGO/A","PAREJA","Atlantico","Bolivar","Magdalena","La Guajira","Cesar","Cordoba","Sucre","Otras","Cajacopi Eps","Sanitas Eps","Compensar Eps","Coomeva Eps","Coosalud","Sura Eps","Famisanar","Medimas Eps","Nueva Eps","Salud Total Eps","Cafam Eps","Emssanar Eps","Colsubsidio Eps","Asmet salud Eps","Asocación mutual barrios","Capresoca Eps","Ecoopsos Eps SAS","Fuerzas militares","Policia Naciona","Ecopetrol","Magisterio","Servicio Occidental de salud","Cruz Blanca Eps","Ninguna","Aliansalud","Mutual ser"];
         
         let evef = eve+"F";
-        if(eve == "DEPARTAMENTO" || eve ==  "COLEGIO_G" ||eve ==  "Eps"){
+        if(eve == "DEPARTAMENTO" || eve ==  "COLEGIO_G" ||eve ==  "Eps" || eve == "PARENTESCO_ACUDIENTE"){
           if(dataForm[eve] == 'Otras'){
             document.getElementById(evef).hidden = false;
           } else{
@@ -1308,7 +1307,7 @@
           dataForm[even.name] = even.value;   
           habilitarBotones();
           onFocusF();
-          document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
+          document.getElementById("00N5G00000VwPla").value = JSON.stringify(dataForm);
           return       
         }
           alert("Por favor ingrese una dirección de correo electrono (email)!")
@@ -1319,7 +1318,7 @@
       
       function onFocusF(){
         dataForm.email = dataForm.emailForm;
-        document.getElementById("00N3C000006CwdE").value = JSON.stringify(dataForm);
+        document.getElementById("00N5G00000VwPla").value = JSON.stringify(dataForm);
         let submit = document.getElementById("submit");
         submit.hidden = false;
         document.getElementById("submit").addEventListener("click", (event) => {
@@ -1398,8 +1397,7 @@
           }
         });
         habilitarBotones();
-      }, false);
-      
+      }, false);   
     
 
     </script>
