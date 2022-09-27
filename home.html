@@ -37,8 +37,22 @@
       iframe.style.border = '0'; 
       
        thisScript.parentElement.replaceChild(iframe, thisScript); 
+
+       let sect = document.querySelector(".UTM_Agencia");  
+        
+        sect.style.display = 'none';
+        let sect1 = document.querySelector(".UTM_Source_Agencia");
+        sect1.hidden = true;
+        let sect2 = document.querySelector(".UTM_Medium_Agencia");
+        sect2.hidden = true;
+        let sect3 = document.querySelector(".UTM_Campaing_Agencia");
+        sect3.hidden = true;
+        let sect4 = document.querySelector(".UTM_Content_Agencia");
+        sect4.hidden = true;
+        let sect5 = document.querySelector(".UTM_Term_Agencia");
+        sect5.hidden = true;
       
-      </script> 
+    </script> 
     
 
     <style type="text/css">
